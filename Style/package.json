@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "build": "npx stylus lib -o dist",
-    "public": "npm publish --access public"
+    "prepublish": "npm run build"
   },
   "author": {
     "name": "LancerComet",
