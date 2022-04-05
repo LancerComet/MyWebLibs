@@ -1,0 +1,51 @@
+{
+  "name": "@lancercomet/utils",
+  "version": "1.0.0",
+  "description": "My personal utils lib.",
+  "files": [
+    "dist/",
+    "types/",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --coverage",
+    "prebuild": "rimraf ./dist",
+    "pretest": "npm run build",
+    "preversion": "npm run test",
+    "prepublish": "npm run test"
+  },
+  "author": {
+    "name": "LancerComet",
+    "email": "chw644@hotmail.com"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.14",
+    "@types/qs": "^6.9.7",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "jest": "^27.0.3",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.7",
+    "typescript": "^3.9.10"
+  },
+  "dependencies": {
+    "qs": "^6.10.1"
+  },
+  "exports": {
+    "./*": "./dist/*.js"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "*",
+        "dist/*"
+      ]
+    }
+  }
+}
