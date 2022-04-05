@@ -1,0 +1,205 @@
+@import "./$variable.styl"
+
+// Transition.
+// ==================================
+for $sec in 2 4 6 8
+  .ts-dot-{$sec}
+    transition: all $cubicEase ($sec * .1)s
+
+// Animation.
+// ==================================
+.a-forwards
+  animation-fill-mode: forwards
+
+// Move in.
+// ==================================
+
+// Move in left.
+@keyframes move-in-left
+  from
+    opacity: 0
+    transform: translate(5em, 0)
+  to
+    opacity: 1
+    transform: translate(0, 0)
+
+.a-move-in-left
+  animation: move-in-left $cubicEase .4s
+
+// Move in right.
+@keyframes move-in-right
+  from
+    opacity: 0
+    transform: translate(-5em, 0)
+  to
+    opacity: 1
+    transform: translate(0, 0)
+
+.a-move-in-right
+  animation: move-in-right $cubicEase .4s
+
+// Move in Top.
+@keyframes move-in-top
+  from
+    opacity: 0
+    transform: translate(0, 5em)
+
+  to
+    opacity: 1
+    transform: translate(0, 0)
+
+.a-move-in-top
+  animation: move-in-top $cubicEase .4s
+
+// Move in Bottom.
+@keyframes move-in-bottom
+  from
+    opacity: 0
+    transform: translate(0, -5em)
+
+  to
+    opacity: 1
+    transform: translate(0, 0)
+
+.a-move-in-bottom
+  animation: move-in-bottom $cubicEase .4s
+
+
+// Move out.
+// ==================================
+
+// Move out left.
+@keyframes move-out-left
+  from
+    transform: translate(0, 0)
+    opacity: 1
+  to
+    transform: translate(-10em, 0)
+    opacity: 0
+
+.a-move-out-left
+  animation: move-out-left $cubicEase .4s
+
+// Move out right.
+@keyframes move-out-right
+  from
+    transform: translate(0, 0)
+    opacity: 1
+  to
+    transform: translate(10em, 0)
+    opacity: 0
+
+.a-move-out-right
+  animation: move-out-right $cubicEase .4s
+
+// Move out top.
+@keyframes move-out-top
+  from
+    transform: translate(0, 0)
+    opacity: 1
+  to
+    transform: translate(0, -5em)
+    opacity: 0
+
+.a-move-out-top
+  animation: move-out-top $cubicEase .4s
+
+// Move out bottom.
+@keyframes move-out-bottom
+  from
+    transform: translate(0, 0)
+    opacity: 1
+  to
+    transform: translate(0, 5em)
+    opacity: 0
+
+.a-move-out-bottom
+  animation: move-out-bottom $cubicEase .4s
+
+
+// Splashing.
+// ==================================
+@keyframes splashing
+  0%
+    opacity: 0
+  50%
+    opacity: 1
+  100%
+    opacity: 0
+
+.a-splashing
+  animation: splashing ease 3s infinite
+
+
+// Fade.
+// ==================================
+
+// Fade In.
+@keyframes fade-in
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+.a-fade-in
+  animation: fade-in linear .4s
+
+// Fade Out.
+@keyframes fade-out
+  from
+    opacity: 1
+  to
+    opacity: 0
+
+.a-fade-out
+  animation: fade-out linear .4s
+
+
+// Scaling.
+// ==================================
+
+// Scale in.
+@keyframes scale-in
+  0%
+    transform: scale(0)
+  100%
+    transform: scale(1)
+
+.a-scale-in
+  animation: scale-in $cubicEase .4s
+
+// Scale in ease.
+@keyframes scale-in-ease
+  0%
+    transform: scale(0)
+  50%
+    transform: scale(1.1)
+  100%
+    transform: scale(1)
+
+.a-scale-in-ease
+  animation: scale-in-ease $cubicEase .4s
+
+// Scale out.
+@keyframes scale-out
+  from
+    opacity: 1
+    transform: scale(1)
+  to
+    opacity: 0
+    transform: scale(.8)
+
+.a-scale-out
+  animation: scale-out $cubicEase .4s
+
+// Scale out ease.
+@keyframes scale-out-ease
+  0%
+    transform: scale(1)
+  50%
+    transform: scale(1.1)
+  100%
+    transform: scale(0)
+
+.a-scale-out-ease
+  animation: scale-out-ease $cubicEase .4s

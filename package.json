@@ -1,0 +1,16 @@
+{
+  "name": "@lancercomet/style",
+  "version": "1.0.0",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npx stylus lib -o dist",
+    "public": "npm publish --access public"
+  },
+  "author": {
+    "name": "LancerComet",
+    "email": "chw644@hotmail.com"
+  }
+}

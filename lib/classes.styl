@@ -1,0 +1,164 @@
+/*
+ *  By LancerComet at 17:25, 2016.06.13.
+ *  # Carry Your World #
+ */
+@import "./$variable.styl"
+
+// Position.
+// ======================
+.p-absolute
+  position: absolute
+
+.p-relative
+  position: relative
+
+.p-fixed
+  position: fixed
+
+.p-zero
+  top: 0
+  left: 0
+
+.p-center
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+
+.f-left
+  float: left
+
+.f-right
+  float: right
+
+.f-clear
+  &:after
+    content: ""
+    display: block
+    visibility: hidden
+    clear: both
+
+.m-auto
+  margin: 0 auto
+
+.v-top
+  vertical-align: top
+
+.v-middle
+  vertical-align: middle
+
+.v-bottom
+  vertical-align: bottom
+
+// Box-sizing.
+// ======================
+.w-100
+  width: 100%
+
+.h-100
+  height: 100%
+
+.dp-block
+  display: block
+
+.dp-i-block
+  display: inline-block
+
+.dp-none
+  display: none
+
+.dp-table
+  display: table
+
+.dp-table-cell
+  display: table-cell
+
+.dp-flex
+  display: flex
+
+  &.flex-row
+    flex-direction: row
+
+  &.flex-column
+    flex-direction: column
+
+  &.flex-wrap
+    flex-wrap: wrap
+
+  &.align-center
+    align-items: center
+
+  &.justify-center
+    justify-content: center
+
+  &.justify-item-center
+    justify-items: center
+
+  &.space-between
+    justify-content: space-between
+
+.border-box
+  box-sizing: border-box
+
+// Text.
+// ======================
+.t-left
+  text-align: left
+
+.t-center
+  text-align: center
+
+.t-right
+  text-align: right
+
+.t-over-hidden
+  overflow: hidden
+  text-overflow: ellipsis
+
+.t-nowrap
+.t-no-wrap
+  white-space: nowrap
+
+// Visual.
+// ======================
+.bg-center
+  background-position: center center
+
+.bg-no-repeat
+  background-repeat: no-repeat
+
+.bg-cover
+  background-size: cover
+
+.bg-contain
+  background-size: contain
+
+.bg-fixed
+  background-attachment: fixed
+
+.over-hidden
+  overflow: hidden
+
+.pointer
+  cursor: pointer
+
+.no-select
+.none-select
+  user-select: none
+
+.list-none
+  padding: 0
+  margin: 0
+  list-style: none
+
+.b-circle
+  border-radius: 50%
+
+.v-hidden
+  visibility: hidden
+
+// Vue Styles.
+// ======================
+[v-cloak]
+  display: none
