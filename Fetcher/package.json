@@ -1,0 +1,35 @@
+{
+  "name": "@lancercomet/fetcher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Fetcher",
+    "Network",
+    "AJAX",
+    "LancerComet"
+  ],
+  "author": {
+    "name": "LancerComet",
+    "email": "chw644@hotmail.com"
+  },
+  "devDependencies": {
+    "@types/qs": "^6.9.7",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "eslint": "^8.14.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@lancercomet/suntori": "^1.0.3",
+    "@lancercomet/types": "^1.0.0",
+    "@lancercomet/utils": "^1.0.0"
+  }
+}
