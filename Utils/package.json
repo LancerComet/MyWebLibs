@@ -4,10 +4,14 @@
   "description": "My personal utils lib.",
   "files": [
     "dist/",
-    "types/",
     "README.md"
   ],
+  "author": {
+    "name": "LancerComet",
+    "email": "chw644@hotmail.com"
+  },
   "keywords": ["Utils", "LancerComet"],
+  "license": "Apache-2.0",
   "scripts": {
     "build": "tsc",
     "test": "jest --coverage",
@@ -16,9 +20,8 @@
     "preversion": "npm run test",
     "prepublish": "npm run test"
   },
-  "author": {
-    "name": "LancerComet",
-    "email": "chw644@hotmail.com"
+  "dependencies": {
+    "qs": "^6.10.1"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
@@ -34,9 +37,6 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.7",
     "typescript": "^4.6.3"
-  },
-  "dependencies": {
-    "qs": "^6.10.1"
   },
   "exports": {
     "./*": "./dist/*.js"

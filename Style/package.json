@@ -5,13 +5,15 @@
     "dist/",
     "README.md"
   ],
-  "scripts": {
-    "build": "npx stylus lib -o dist",
-    "prepublish": "npm run build"
-  },
   "author": {
     "name": "LancerComet",
     "email": "chw644@hotmail.com"
   },
-  "keywords": ["CSS", "Style", "LancerComet"]
+  "keywords": ["CSS", "Style", "LancerComet"],
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "npx stylus lib -o dist",
+    "prebuild": "node rmdist.js",
+    "prepublish": "npm run build"
+  }
 }

@@ -17,6 +17,7 @@
     "name": "LancerComet",
     "email": "chw644@hotmail.com"
   },
+  "license": "Apache-2.0",
   "scripts": {
     "build": "rollup -c",
     "test": "jest",
