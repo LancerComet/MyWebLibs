@@ -1,31 +1,17 @@
 import { Fetcher } from '../lib'
 
 describe('Aborting testing.', () => {
-  it('It can abort a request properly', async () => {
-    const fetcher = new Fetcher()
-
-    const revoke = fetcher.setInterceptor(config => {
-      config.url = config.url + '/with-path'
-      return config
+  it('It should send get request properly.', (done) => {
+    const fetcher = new Fetcher({
+      timeout: 5000
     })
-
-    const revoke2 = fetcher.setInterceptor(config => {
-      expect(config.url).toBe('/interceptor/with-path')
-      revoke()
-      revoke2()
-      return config
-    })
-
-    const response1 = await fetcher.request({
-      url: '/interceptor',
+    fetcher.request({
+      url: '/me',
       method: 'GET'
+    }).then(item => {
+      expect((item.error?.message ?? '').toLowerCase()).toContain('abort')
+      done()
     })
-    expect(response1.data).toEqual({ message: '/interceptor/with-path' })
-
-    const response2 = await fetcher.request({
-      url: '/interceptor',
-      method: 'GET'
-    })
-    expect(response2.data).toEqual({ message: '/interceptor' })
+    fetcher.abort()
   })
 })

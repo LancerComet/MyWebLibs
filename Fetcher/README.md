@@ -15,6 +15,29 @@ const { data, error } = await fetcher.request({
 })
 ```
 
+## Abort a request
+
+```tsx
+import { Fetcher } from '@lancercomet/fetcher'
+
+const fetcher = new Fetcher()
+
+const sendRequest = async () => {
+  const { data, error } = await fetcher.request({
+    url: '/me',
+    method: 'GET'
+  })
+  // ...
+}
+
+const abortRequest = () => {
+  fetcher.abort()
+}
+
+<button onClick={sendRequest}>Send</button>
+<button onclick={abortRequest}>Abort</button>
+```
+
 ## Work with SunTori
 
 ```ts
@@ -38,3 +61,7 @@ data instanceof User  // true
 data.username         // string
 data.age              // number
 ```
+
+## License
+
+Apache-2.0

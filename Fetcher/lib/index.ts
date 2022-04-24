@@ -133,7 +133,7 @@ class Fetcher {
     }
 
     const result: IFetchResult<T> = {
-      status: 200
+      status: 0
     }
 
     try {
@@ -151,9 +151,14 @@ class Fetcher {
             ? data
             : JSON.stringify(data)
       })
-      clearTimeout(timeoutTimer)
 
       result.rawResponse = response.clone()
+
+      const status = response.status
+      result.status = response.status
+      if (status >= 400) {
+        throw new Error(`Http ${status}`)
+      }
 
       const json = await response.json() as T
       const type = param.type
@@ -168,10 +173,10 @@ class Fetcher {
         }
       }
     } catch (error) {
-      clearTimeout(timeoutTimer)
       result.error = error as Error
     }
 
+    clearTimeout(timeoutTimer)
     return result
   }
 

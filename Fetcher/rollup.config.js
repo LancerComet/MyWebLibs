@@ -7,8 +7,7 @@ export default {
   output: [
     {
       file: './dist/index.js',
-      format: 'umd',
-      name: 'Fetcher'
+      format: 'cjs'
     },
     {
       file: './dist/index.module.js',
@@ -26,5 +25,9 @@ export default {
         include: ['lib/**/*']
       }
     })
+  ],
+
+  external: [
+    '@lancercomet/suntori'
   ]
 }

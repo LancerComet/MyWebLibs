@@ -1,7 +1,7 @@
 {
   "name": "@lancercomet/fetcher",
   "version": "1.0.0",
-  "description": "",
+  "description": "Yet another fetcher.",
   "main": "./dist/index.js",
   "module": "./dist/index.module.js",
   "files": [
@@ -20,8 +20,11 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "test": "jest"
+    "test": "jest",
+    "prepublish": "npm run test && npm run build",
+    "preversion": "npm run test && npm run build"
   },
+  "license": "Apache-2.0",
   "dependencies": {
     "@lancercomet/suntori": "^1.0.3",
     "@lancercomet/types": "^1.0.0"
