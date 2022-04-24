@@ -1,0 +1,53 @@
+{
+  "name": "@lancercomet/fetcher",
+  "version": "1.0.0",
+  "description": "Yet another fetcher.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.module.js",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "keywords": [
+    "Fetcher",
+    "Network",
+    "AJAX",
+    "LancerComet"
+  ],
+  "author": {
+    "name": "LancerComet",
+    "email": "chw644@hotmail.com"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "test": "jest",
+    "prepublish": "npm run test && npm run build",
+    "preversion": "npm run test && npm run build"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@lancercomet/suntori": "^1.0.3",
+    "@lancercomet/types": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@types/qs": "^6.9.7",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "eslint": "^8.14.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "fetch-mock-jest": "^1.5.1",
+    "jest": "^27.5.1",
+    "node-fetch": "^2.6.7",
+    "reflect-metadata": "^0.1.13",
+    "rollup": "^2.70.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3"
+  }
+}
