@@ -32,6 +32,7 @@ export default {
   ],
 
   external: [
-    '@lancercomet/suntori'
+    '@lancercomet/suntori',
+    'qs'
   ]
 }

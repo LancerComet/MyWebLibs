@@ -1,5 +1,6 @@
 import { ConstructorOf } from '@lancercomet/types'
 import { deserialize } from '@lancercomet/suntori'
+import qs from 'qs'
 
 interface IApiResponse<T = unknown> {
   data: T
@@ -54,10 +55,6 @@ interface IFetcher {
 }
 
 type Interceptor = (param: IFetcherRequestParam) => IFetcherRequestParam
-
-const stringify = (obj: Record<any, any>): string => {
-  return new URLSearchParams(obj).toString()
-}
 
 const isFunction = (target: unknown): boolean => {
   return typeof target === 'function'
@@ -117,7 +114,7 @@ class Fetcher {
     const isFormData = data instanceof FormData
 
     if (method === 'GET') {
-      const queryString = stringify(data)
+      const queryString = qs.stringify(data)
       if (queryString) {
         url += '?' + queryString
       }
