@@ -121,8 +121,8 @@ class Fetcher {
       if (queryString) {
         url += '?' + queryString
       }
-    } else {
-      headers['Content-Type'] = isFormData ? 'multipart/form-data' : 'application/json'
+    } else if (!isFormData) {
+      headers['Content-Type'] = 'application/json'
     }
     Object.assign(headers, param.options?.headers ?? {})
 
