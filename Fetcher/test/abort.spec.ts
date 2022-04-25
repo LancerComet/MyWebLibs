@@ -5,7 +5,7 @@ describe('Aborting testing.', () => {
     const fetcher = new Fetcher({
       timeout: 5000
     })
-    fetcher.request({
+    fetcher.requestJSON({
       url: '/me',
       method: 'GET'
     }).then(item => {

@@ -9,7 +9,7 @@ import { Fetcher } from '@lancercomet/fetcher'
 
 const fetcher = new Fetcher()
 
-const { data, error } = await fetcher.request({
+const { data, error } = await fetcher.requestJSON({
   url: '/me',
   method: 'GET'
 })
@@ -23,7 +23,7 @@ import { Fetcher } from '@lancercomet/fetcher'
 const fetcher = new Fetcher()
 
 const sendRequest = async () => {
-  const { data, error } = await fetcher.request({
+  const { data, error } = await fetcher.requestJSON({
     url: '/me',
     method: 'GET'
   })
@@ -51,7 +51,7 @@ class User {
 }
 
 const fetcher = new Fetcher()
-const { data } = await fetcher.request({
+const { data } = await fetcher.requestJSON({
   url: '/me',
   method: 'GET',
   type: User
@@ -60,6 +60,38 @@ const { data } = await fetcher.request({
 data instanceof User  // true
 data.username         // string
 data.age              // number
+```
+
+## Request Binary
+
+```ts
+// ArrayBuffer.
+const { data: buffer, error } = await fetcher.requestBinary({
+  url: '/binary'
+}, 'arraybuffer')
+
+// Blob.
+const { data: blob, error } = await fetcher.requestBinary({
+  url: '/binary'
+}, 'blob') 
+```
+
+## Request the API
+
+"The API" is a type of data structure which would be like:
+
+```json
+{
+  "data": ...,
+  "code": 0,
+  "message": "OK"
+}
+```
+
+```ts
+const { data, error, message, code, status } = await fetcher.requestAPI({
+  ...
+})
 ```
 
 ## License

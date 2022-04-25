@@ -1,14 +1,24 @@
 import { ConstructorOf } from '@lancercomet/types'
 import { deserialize } from '@lancercomet/suntori'
 
-interface IFetchResult<T, E = Error> {
-  data?: T
-  error?: E
-  status: number
-  rawResponse?: Response
+interface IApiResponse<T = unknown> {
+  data: T
+  code: number
+  message: string
 }
 
-interface FetcherOptions {
+interface IFetchResult<T, E = Error> {
+  data: T | undefined
+  error: E | undefined
+  status: number
+}
+
+interface IFetcherApiResult<T, E = Error> extends IFetchResult<T, E> {
+  message: string
+  code: number
+}
+
+interface IFetcherOptions {
   cache?: RequestCache
   credentials?: RequestCredentials
   headers?: HeadersInit
@@ -16,12 +26,15 @@ interface FetcherOptions {
   referrerPolicy?: ReferrerPolicy
 }
 
-interface IFetcherRequestParam<T> {
+interface IFetcherRequestParam {
   url: string
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTION',
   data?: Record<string | number, unknown> | FormData
+  options?: IFetcherOptions
+}
+
+interface IFetcherRequestJSONParam<T> extends IFetcherRequestParam {
   type?: ConstructorOf<(T extends (infer P)[] ? P : T)>,
-  options?: FetcherOptions
 }
 
 interface IFetcher {
@@ -40,7 +53,7 @@ interface IFetcher {
   timeout?: number
 }
 
-type Interceptor = <T>(param: IFetcherRequestParam<T>) => IFetcherRequestParam<T>
+type Interceptor = (param: IFetcherRequestParam) => IFetcherRequestParam
 
 const stringify = (obj: Record<any, any>): string => {
   return new URLSearchParams(obj).toString()
@@ -60,8 +73,8 @@ class Fetcher {
   private _interceptors: Interceptor[] = []
   private _abortController: AbortController = new AbortController()
 
-  private _createParamByInterceptors<T> (param: IFetcherRequestParam<T>): IFetcherRequestParam<T> {
-    let result: IFetcherRequestParam<T> = param
+  private _createParamByInterceptors<T> (param: IFetcherRequestParam): IFetcherRequestParam {
+    let result: IFetcherRequestParam = param
     for (const func of this._interceptors.filter(item => isFunction(item))) {
       result = func(result)
     }
@@ -93,14 +106,8 @@ class Fetcher {
     }
   }
 
-  /**
-   * Send Http request.
-   *
-   * @template T
-   * @param {IFetcherRequestParam<T>} param
-   */
-  async request <T> (param: IFetcherRequestParam<T>): Promise<IFetchResult<T>> {
-    param = this._createParamByInterceptors<T>(param)
+  private async _request (param: IFetcherRequestParam): Promise<Response> {
+    param = this._createParamByInterceptors(param)
 
     let url = param.url ?? ''
     const method = param.method
@@ -132,10 +139,6 @@ class Fetcher {
       timeoutTimer = setTimeout(() => this.abort(), timeout)
     }
 
-    const result: IFetchResult<T> = {
-      status: 0
-    }
-
     try {
       const response = await fetch(url, {
         method,
@@ -151,12 +154,32 @@ class Fetcher {
             ? data
             : JSON.stringify(data)
       })
+      clearTimeout(timeoutTimer)
+      return response
+    } catch (error) {
+      clearTimeout(timeoutTimer)
+      throw error
+    }
+  }
 
-      result.rawResponse = response.clone()
+  /**
+   * Send Http request and read the response as JSON.
+   *
+   * @template T
+   * @param {IFetcherRequestParam<T>} param
+   */
+  async requestJSON <T> (param: IFetcherRequestJSONParam<T>): Promise<IFetchResult<T>> {
+    const result: IFetchResult<T> = {
+      data: undefined,
+      error: undefined,
+      status: 0
+    }
 
-      const status = response.status
+    try {
+      const response = await this._request(param)
       result.status = response.status
-      if (status >= 400) {
+
+      if (response.status >= 400) {
         throw new Error(`Http ${status}`)
       }
 
@@ -176,7 +199,84 @@ class Fetcher {
       result.error = error as Error
     }
 
-    clearTimeout(timeoutTimer)
+    return result
+  }
+
+  /**
+   * Send http request and read the response as "The API".
+   *
+   * @param param
+   */
+  async requestAPI <T> (param: IFetcherRequestJSONParam<T>): Promise<IFetcherApiResult<T>> {
+    const result: IFetcherApiResult<T> = {
+      data: undefined,
+      error: undefined,
+      status: 0,
+      code: 0,
+      message: ''
+    }
+
+    try {
+      const response = await this._request(param)
+      result.status = response.status
+
+      if (response.status >= 400) {
+        throw new Error(`Http ${status}`)
+      }
+
+      const apiResponse = await response.json() as IApiResponse
+      result.code = apiResponse.code
+      result.message = apiResponse.message
+
+      const type = param.type
+      const data = apiResponse.data
+      if (!type) {
+        result.data = data as T
+      } else {
+        if (Array.isArray(data)) {
+          result.data = data.map(item => deserialize(item, type)) as unknown as T
+        } else {
+          result.data = deserialize(data, type) as T
+        }
+      }
+    } catch (error) {
+      result.error = error as Error
+    }
+
+    return result
+  }
+
+  /**
+   * Send http request and read the response as ArrayBuffer.
+   *
+   * @param param
+   * @param type
+   */
+  async requestBinary (param: IFetcherRequestParam, type: 'arraybuffer'): Promise<IFetchResult<ArrayBuffer>>
+  async requestBinary (param: IFetcherRequestParam, type: 'blob'): Promise<IFetchResult<Blob>>
+  async requestBinary (param: IFetcherRequestParam, type: 'arraybuffer' | 'blob'): Promise<IFetchResult<unknown>> {
+    const result: IFetchResult<unknown> = {
+      data: undefined,
+      error: undefined,
+      status: 0
+    }
+    try {
+      const response = await this._request(param)
+      result.status = response.status
+
+      if (response.status >= 400) {
+        throw new Error(`Http ${status}`)
+      }
+
+      if (type === 'arraybuffer') {
+        result.data = await response.arrayBuffer()
+      } else {
+        result.data = await response.blob()
+      }
+    } catch (error) {
+      result.error = error as Error
+    }
+
     return result
   }
 
@@ -187,9 +287,12 @@ class Fetcher {
 
 export {
   Fetcher,
-  IFetcher,
-  IFetcherRequestParam,
-  FetcherOptions,
+  IApiResponse,
   IFetchResult,
+  IFetcherApiResult,
+  IFetcherOptions,
+  IFetcherRequestParam,
+  IFetcherRequestJSONParam,
+  IFetcher,
   Interceptor
 }

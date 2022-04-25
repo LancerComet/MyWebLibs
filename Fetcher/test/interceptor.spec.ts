@@ -16,13 +16,13 @@ describe('Interceptor testing.', () => {
       return config
     })
 
-    const response1 = await fetcher.request({
+    const response1 = await fetcher.requestJSON({
       url: '/interceptor',
       method: 'GET'
     })
     expect(response1.data).toEqual({ message: '/interceptor/with-path' })
 
-    const response2 = await fetcher.request({
+    const response2 = await fetcher.requestJSON({
       url: '/interceptor',
       method: 'GET'
     })

@@ -1,6 +1,10 @@
 require('reflect-metadata')
 
+const fs = require('fs')
+const path = require('path')
 const fetchMock = require('fetch-mock-jest')
+
+const bugImage = fs.readFileSync(path.resolve(__dirname, './bug.png'))
 
 fetchMock
   .get('/me', {
@@ -26,6 +30,9 @@ fetchMock
   })
 
 fetchMock
+  .get('/binary', bugImage)
+
+fetchMock
   .get('/interceptor', {
     message: '/interceptor'
   })
@@ -35,3 +42,13 @@ fetchMock
 
 fetchMock
   .get('/400', 400)
+
+fetchMock
+  .get('/api', {
+    data: {
+      name: 'John Smith',
+      age: 100
+    },
+    code: 1,
+    message: 'OK'
+  })
