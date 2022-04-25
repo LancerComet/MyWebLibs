@@ -186,5 +186,10 @@ class Fetcher {
 }
 
 export {
-  Fetcher
+  Fetcher,
+  IFetcher,
+  IFetcherRequestParam,
+  FetcherOptions,
+  IFetchResult,
+  Interceptor
 }
