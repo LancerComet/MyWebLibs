@@ -1,6 +1,6 @@
 # @lancercomet/style
 
-My personal style lib.
+My personal CSS library. It contains many css rules just like Tailwind.
 
 ## Quick start
 
