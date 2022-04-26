@@ -1,14 +1,15 @@
 {
   "name": "@lancercomet/style",
   "version": "1.0.1",
-  "files": [
-    "dist/",
-    "README.md"
-  ],
+  "description": "My personal CSS library. It contains many css rules just like Tailwind.",
   "author": {
     "name": "LancerComet",
     "email": "chw644@hotmail.com"
   },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
   "keywords": ["CSS", "Style", "LancerComet"],
   "license": "Apache-2.0",
   "scripts": {
