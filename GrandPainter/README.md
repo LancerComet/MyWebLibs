@@ -1,5 +1,7 @@
 # The Grand Painter
 
+[![npm version](https://badge.fury.io/js/@lancercomet%2Fgrand-painter.svg)](https://badge.fury.io/js/@lancercomet%2Fgrand-painter)
+
 Draw images on canvas with layer effects.
 
 ![header-image](image.jpg)
@@ -50,3 +52,7 @@ GrandPainter.feelTheUniverse({
 ## Example
 
 Check examples in `dev/` for more information.
+
+## License
+
+Apache-2.0

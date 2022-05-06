@@ -25,6 +25,10 @@ jobs:
         working-directory: ./Fetcher
         run: npm ci --quiet --no-progress && npm test
 
+      - name: Test HtmlParser.
+        working-directory: ./HtmlParser
+        run: npm ci --quiet --no-progress && npm test
+
       - name: Test Types
         working-directory: ./Types
         run: npm ci --quiet --no-progress && npm test
