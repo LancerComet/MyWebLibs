@@ -21,7 +21,7 @@
     "name": "LancerComet",
     "email": "chw644@hotmail.com"
   },
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
