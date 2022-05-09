@@ -24,7 +24,7 @@ import 'reflect-metadata'
 import {
   Required, MinLength, MaxLength,
   IsEnglish, IsNumber, IsHexColor,
-  getValidatorRules,
+  getValidatorRules
 } from '@lancercomet/yunomix'
 
 class User {
@@ -47,9 +47,28 @@ const rules = getValidatorRules(User)
 const userInput = new User()
 ```
 
+In Vuetify:
+
 ```html
-<v-textfield v-model="userInput.name" :rules="rules.name">
-<v-textfield v-model.number="userInput.age" :rules="rules.age">
-<v-textfield v-model="userInput.addr" :rules="rules.age">
-<v-textfield v-model="userInput.color" :rules="rules.color">
+<v-textfield v-model="userInput.name" :rules="rules.name" />
+<v-textfield v-model.number="userInput.age" :rules="rules.age" />
+<v-textfield v-model="userInput.addr" :rules="rules.age" />
+<v-textfield v-model="userInput.color" :rules="rules.color" />
 ```
+
+In Lancet:
+
+```html
+<lct-textfield v-model="userInput.name" :rules="rules.name" />
+<lct-textfield v-model.number="userInput.age" :rules="rules.age" />
+<lct-textfield v-model="userInput.addr" :rules="rules.age" />
+<lct-textfield v-model="userInput.color" :rules="rules.color" />
+```
+
+## Example
+
+Please check the `example` folder.
+
+## License
+
+Apache-2.0
