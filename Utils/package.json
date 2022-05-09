@@ -12,6 +12,10 @@
   },
   "keywords": ["Utils", "LancerComet"],
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LancerComet/MyWebLibs.git"
+  },
   "scripts": {
     "build": "tsc",
     "test": "jest --coverage",

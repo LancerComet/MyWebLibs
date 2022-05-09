@@ -36,3 +36,7 @@ jobs:
       - name: Test Utils
         working-directory: ./Utils
         run: npm ci --quiet --no-progress && npm test
+
+      - name: Test Yunomix
+        working-directory: ./Yunomix
+        run: npm ci --quiet --no-progress && npm test

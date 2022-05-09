@@ -11,6 +11,10 @@
     "README.md"
   ],
   "keywords": ["CSS", "Style", "LancerComet"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LancerComet/MyWebLibs.git"
+  },
   "license": "Apache-2.0",
   "scripts": {
     "build": "npx stylus lib -o dist",
