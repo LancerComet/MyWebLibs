@@ -3,15 +3,7 @@
 [![MyWebLibs](https://github.com/LancerComet/MyWebLibs/workflows/Test/badge.svg)](https://github.com/LancerComet/MyWebLibs/actions)
 [![npm version](https://badge.fury.io/js/@lancercomet%2Fyunomix.svg)](https://badge.fury.io/js/@lancercomet%2Fyunomix)
 
-This is a set of validators that are designed for Vuetify and Lancet.
-
-## Something you might to know
-
-Yunomix depends on the very feature `emitDecoratorMetadata` which was introduced in TypeScript, so keep in mind:
-
- - You have to install and import `reflect-metadata` manually.
- - Not available in pure JavaScript enviroment. You have to use it with TypeScript.
- - Not available for ESBuild because ESBuild doesn't emit decorator metadata.
+This is a set of validators that are designed for Vuetify and Lancet in @Decorator form.
 
 ## Quick start
 
@@ -68,6 +60,15 @@ In Lancet:
 ## Example
 
 Please check the `example` folder.
+
+## Something you might to know
+
+Yunomix depends on the very feature `emitDecoratorMetadata` which was introduced in TypeScript, so keep in mind:
+
+- You have to install and import `reflect-metadata` manually.
+- Not available in pure JavaScript enviroment. You have to use it with TypeScript.
+- Not available for ESBuild because ESBuild doesn't emit decorator metadata.
+
 
 ## License
 
