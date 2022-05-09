@@ -11,6 +11,10 @@
     "README.md"
   ],
   "keywords": ["canvas", "javascript", "typescript", "image", "LancerComet"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LancerComet/MyWebLibs.git"
+  },
   "license": "Apache-2.0",
   "scripts": {
     "prepublish": "npm run build",

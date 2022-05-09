@@ -18,13 +18,17 @@
     "name": "LancerComet",
     "email": "chw644@hotmail.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LancerComet/MyWebLibs.git"
+  },
+  "license": "Apache-2.0",
   "scripts": {
     "build": "rollup -c",
     "test": "jest",
     "prepublish": "npm run test && npm run build",
     "preversion": "npm run test && npm run build"
   },
-  "license": "Apache-2.0",
   "dependencies": {
     "@lancercomet/suntori": "^1.0.3",
     "@lancercomet/types": "^1.0.0",

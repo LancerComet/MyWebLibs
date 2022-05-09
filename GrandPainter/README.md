@@ -4,7 +4,7 @@
 
 Draw images on canvas with layer effects.
 
-![header-image](image.jpg)
+![header-image](https://raw.githubusercontent.com/LancerComet/MyWebLibs/master/GrandPainter/image.jpg)
 
 ## Quick start
 
