@@ -1,7 +1,6 @@
 export {
   Required,
-  MinLength,
-  MaxLength,
+  IsString,
   IsEmail,
   IsChinese,
   IsEnglish,

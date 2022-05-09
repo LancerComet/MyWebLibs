@@ -7,21 +7,23 @@ Here is an example shows how to use Yunomix.
 import 'reflect-metadata'
 
 import {
-  Required, MinLength, MaxLength,
+  Required, IsString,
   IsEnglish, IsNumber, IsHexColor,
   getValidatorRules,
 } from '@lancercomet/yunomix'
 
 class User {
   @Required()
-  @MaxLength(10, 'Name cannot be longer than 10.')
+  @IsString(10, undefined, {
+    invalidLength: 'Name must be longer than 10 characters.'
+  })
   @IsEnglish('Name must be English.')
   name: string = ''
 
   @IsNumber('Age must be a number.')
   age: number = 0
 
-  @MinLength(5)
+  @IsString(5)
   addr: string = ''
 
   @IsHexColor({ onlyUpperCase: false })

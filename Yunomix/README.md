@@ -14,21 +14,22 @@ import 'reflect-metadata'
 
 ```ts
 import {
-  Required, MinLength, MaxLength,
-  IsEnglish, IsNumber, IsHexColor,
+  Required, IsString, IsEnglish, IsNumber, IsHexColor,
   getValidatorRules
 } from '@lancercomet/yunomix'
 
 class User {
   @Required()
-  @MaxLength(10, 'Name cannot be longer than 10.')
-  @IsEnglish('Name must be English.')
+  @IsString(1, 10, {
+    invalidType: 'Name length must within 1-10.'
+  })
+  @IsEnglish()
   name: string = ''
 
   @IsNumber('Age must be a number.')
   age: number = 0
 
-  @MinLength(5)
+  @IsString(5)
   addr: string = ''
 
   @IsHexColor()

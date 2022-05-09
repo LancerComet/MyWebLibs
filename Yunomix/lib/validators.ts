@@ -1,10 +1,11 @@
 import { ConstructorOf } from '@lancercomet/types'
 import { Rule, Validator, IRulesMetaData } from './types'
+import { isNull, isNumber, isString, isUndefined } from './utils'
 
 const VALIDATOR_RULES = 'yunomix:rules'
 
 /**
- * Make a field must be defined.
+ * A field that should neither be undefined or null or empty string.
  *
  * @param msg Error message.
  * @example
@@ -14,33 +15,34 @@ const VALIDATOR_RULES = 'yunomix:rules'
  * }
  */
 export function Required (msg: string = 'This field is required.') {
-  return CustomRule(v => !!v || msg)
-}
-
-/**
- * Set string min length.
- *
- * @param min Min length.
- * @param msg Error message.
- */
-export function MinLength (min: number, msg?: string) {
-  msg = msg || `The length cannot less than ${min}.`
   return CustomRule(
-    v => v.length >= min || msg
+    v => (v !== '' && !isNull(v) && !isUndefined(v)) || msg
   )
 }
 
 /**
- * Set string max length.
- *
- * @param {number} max Max length.
- * @param {string} msg Error message.
+ * A field that should be a string.
+ * @param {number} [min = 0] Min length.
+ * @param {number} [max] Max length.
+ * @param messages Define error messages.
  */
-export function MaxLength (max: number = 100, msg?: string) {
-  msg = msg || `The length cannot larger than ${max}.`
-  return CustomRule(
-    v => v.length <= max || msg
-  )
+export function IsString (
+  min: number = 0,
+  max?: number,
+  messages?: {
+    invalidType?: string
+    invalidLength?: string
+  }
+) {
+  return CustomRule((v: string) => {
+    if (!isString(v)) {
+      return (messages?.invalidType ?? 'This field must be a string.')
+    }
+    const isIncorrectLength = v.length < min || (isNumber(max) && v.length > max)
+    return isIncorrectLength
+      ? (messages?.invalidLength ?? `Text length should between ${min} and ${max}.`)
+      : true
+  })
 }
 
 /**
