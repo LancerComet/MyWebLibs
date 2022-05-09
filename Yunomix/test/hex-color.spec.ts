@@ -14,11 +14,11 @@ describe('Validator testing.', () => {
       rule2: string
     }
     const rules = getValidatorRules(Color)
-    expect(rules.rule1[1]('123')).toBe('Please provide a valid hex color, like "#000, #12450d".')
-    expect(rules.rule1[1]('#ccc')).toBe(true)
-    expect(rules.rule1[1]('#CCC')).toBe(true)
+    expect(rules.rule1[0]('123')).toBe('Please provide a valid hex color, like "#000, #12450d".')
+    expect(rules.rule1[0]('#ccc')).toBe(true)
+    expect(rules.rule1[0]('#CCC')).toBe(true)
 
-    expect(rules.rule2[1]('#CCC')).toBe(true)
-    expect(rules.rule2[1]('#ccc')).toBe('Please provide a valid hex color, like "#000, #12450D".')
+    expect(rules.rule2[0]('#CCC')).toBe(true)
+    expect(rules.rule2[0]('#ccc')).toBe('Please provide a valid hex color, like "#000, #12450D".')
   })
 })

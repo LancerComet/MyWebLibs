@@ -9,7 +9,6 @@ export {
   IsHttpUrl,
   IsHexColor,
   CustomRule,
-  CustomRules,
   getValidatorRules
 } from './validators'
 

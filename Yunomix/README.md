@@ -58,6 +58,53 @@ In Lancet:
 <lct-textfield v-model="userInput.color" :rules="rules.color" />
 ```
 
+## Validator list
+
+ - Required
+ - IsString
+ - IsEmail
+ - IsChinese
+ - IsEnglish
+ - IsNumber
+ - NumRange
+ - IsHttpUrl
+ - IsHexColor
+ - CustomRule
+
+## Custom Rule
+
+You can use `CustomRule` to create a customized validator:
+
+```ts
+// It accepts multiple validating functions.
+@CustomRule(
+  v => typeof v === 'string' || 'Value must be a string',
+  v => v.includes('John') || 'Value must contain a "John".'
+)
+```
+
+Example:
+
+```tsx
+class User {
+  // "v" is something that user gives.
+  @CustomRule(v => v === 'Kayne' || 'You must be Kayne!')
+  name: string = ''
+}
+
+const input = new User()
+const rules = getValidatorRules(User)
+
+<VTextfield v-model={input.name} rules={rules.user}>  // user.name can only be 'Kayne'.
+```
+
+`CustomRule` accepts one / several function(s) like `(value: unknown) => true | string`.
+
+The returned value:
+
+ - `true`: Indicates that the value that user provides is valid.
+ - a `string`: Indicates that the value that user provides is invalid and this returned string will be used as the warning message.
+
 ## Example
 
 Please check the `example` folder.

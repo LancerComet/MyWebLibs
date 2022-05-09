@@ -113,17 +113,33 @@ export function IsHttpUrl (msg: string = 'Please provide a valid Http URL.') {
 
 /**
  * Hex color format validation.
- *
- * @param {boolean} [allowAbbr=true] If hex abbr (#000) is allowed. Default: true.
- * @param {boolean} [onlyUpperCase=true] If only upper case (#ABCDEF). Default: false.
- * @param {boolean} [useARGB=false] Is ARGB format is allowed (#00ABCDEF). Default: false.
- * @param {string} msg Error message.
  */
-export function IsHexColor (params?: {
-  allowAbbr?: boolean
-  onlyUpperCase?: boolean
-  useARGB?: boolean
-}, msg?: string) {
+export function IsHexColor (
+  /**
+   * Validation param.
+   */
+  params?: {
+    /**
+     * If hex abbr (#000) is allowed. Default: true.
+     */
+    allowAbbr?: boolean
+
+    /**
+     * If only upper case (#ABCDEF). Default: false.
+     */
+    onlyUpperCase?: boolean
+
+    /**
+     * Is ARGB format is allowed (#00ABCDEF). Default: false.
+     */
+    useARGB?: boolean
+  },
+
+  /**
+   * Error message.
+   */
+  msg?: string
+) {
   const allowAbbr = params?.allowAbbr ?? true
   const onlyUpperCase = params?.onlyUpperCase ?? false
   const useARGB = params?.useARGB === true
@@ -148,6 +164,10 @@ export function IsHexColor (params?: {
   }
 
   const hintText = msg || `Please provide a valid hex color, like "${exampleColor}".`
+
+  // Order:
+  //  - Check hex format.
+  //  - Check length.
   const fns: Rule[] = []
 
   if (onlyUpperCase) {
@@ -169,40 +189,26 @@ export function IsHexColor (params?: {
       fns.push(v => v.length === 7 || hintText)
     }
   }
-  return CustomRules(fns)
+  return CustomRule(...fns)
 }
 
 /**
  * Create a custom validator.
  *
- * @param fn Validating function.
+ * @param {Rule[]} fns Validating function.
  * @example
  * class User {
  *   @CustomRule(v => v === 'John Smith' || 'Username can only be "John Smith".')
  *   name: string = ''
- * }
- */
-export function CustomRule (fn: Rule) {
-  return function (target: object, prototypeKey: string) {
-    setRulesMetaDataByKey(prototypeKey, fn, target)
-  }
-}
-
-/**
- * Create custom validators.
  *
- * @param fns Validating functions.
- * @example
- * class User {
- *   @CustomRules([
- *     v => typeof v === 'string' || 'Username must be a string.',
- *     v => v !== 'John Smith' || 'Username cannot be "John Smith".',
- *     v => v.length > 1 || 'Username at least 1 character.'
- *   ])
- *   name: string = ''
+ *   @CustomRule(
+ *     v => v > 0 || 'Age must be greator than 0.',
+ *     v => v < 10 || 'Age must be less than 10.'
+ *   )
+ *   age: number = 0
  * }
  */
-export function CustomRules (fns: Rule[]) {
+export function CustomRule (...fns: Rule[]) {
   return function (target: object, prototypeKey: string) {
     fns.forEach(fn => {
       setRulesMetaDataByKey(prototypeKey, fn, target)
@@ -217,7 +223,6 @@ export function CustomRules (fns: Rule[]) {
  * @param {ConstructorOf<T>} Constructor The decorated class.
  */
 export function getValidatorRules<T> (Constructor: ConstructorOf<T>): Validator<T> {
-  // @ts-ignore
   const rulesMetaData = Reflect.getMetadata(VALIDATOR_RULES, Constructor)
   return rulesMetaData
 }
@@ -230,17 +235,13 @@ function setRulesMetaDataByKey (key: string, fn: Rule, target: object) {
   // target is the prototype object, not the constructor.
   const constructor = target.constructor
   let rulesMetaData: IRulesMetaData = {}
-  // @ts-ignore
   if (Reflect.hasMetadata(VALIDATOR_RULES, constructor)) {
-    // @ts-ignore
     rulesMetaData = Reflect.getMetadata(VALIDATOR_RULES, constructor)
   }
-  // @ts-ignore
   if (Reflect.has(rulesMetaData, key)) {
-    rulesMetaData[key] = [fn, ...rulesMetaData[key]]
+    rulesMetaData[key] = [...rulesMetaData[key], fn]
   } else {
     rulesMetaData[key] = [fn]
   }
-  // @ts-ignore
   Reflect.defineMetadata(VALIDATOR_RULES, rulesMetaData, constructor)
 }
