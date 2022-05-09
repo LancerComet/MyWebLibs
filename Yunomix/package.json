@@ -1,6 +1,6 @@
 {
   "name": "@lancercomet/yunomix",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A set of validators that are designed for Vuetify and Lancet in Decorator form.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
