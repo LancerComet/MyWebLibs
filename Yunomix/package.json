@@ -19,12 +19,16 @@
     "postbuild": "node ./post-build.js"
   },
   "author": {
-    "name": "KayneWang",
+    "name": "LancerComet",
     "email": "chw644@hotmail.com"
   },
+  "contributors": [
+    { "name": "KayneWang", "url": "https://github.com/KayneWang", "email": "w.zengkai@gmail.com" }
+  ],
   "license": "Apache-2.0",
   "keywords": [
     "Validator",
+    "Validation",
     "Form",
     "Decorator",
     "Vuetify",
