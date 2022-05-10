@@ -1,6 +1,6 @@
 {
   "name": "@lancercomet/grand-painter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Draw images on canvas with layer effects.",
   "author": "LancerComet <chw644@hotmail.com>",
   "main": "./dist/index.js",
@@ -10,7 +10,13 @@
     "image.jpg",
     "README.md"
   ],
-  "keywords": ["canvas", "javascript", "typescript", "image", "LancerComet"],
+  "keywords": [
+    "canvas",
+    "javascript",
+    "typescript",
+    "image",
+    "LancerComet"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/LancerComet/MyWebLibs.git"
