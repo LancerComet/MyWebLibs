@@ -3,9 +3,13 @@
 [![MyWebLibs](https://github.com/LancerComet/MyWebLibs/workflows/Test/badge.svg)](https://github.com/LancerComet/MyWebLibs/actions)
 [![npm version](https://badge.fury.io/js/@lancercomet%2Fyunomix.svg)](https://badge.fury.io/js/@lancercomet%2Fyunomix)
 
-This is a set of validators that are designed for Vuetify and Lancet in @Decorator form.
+Yunomix is a validation toolkit which is designed for TypeScript users in AOP form.
 
-But it also can be used without Vuetify or Lancet.
+## Features
+
+ - Set rules by using @Decorator.
+ - Works with [Vuetify](https://github.com/vuetifyjs/vuetify) and [Lancet](https://github.com/LancerComet/Lancet).
+ - For TypeScript users.
 
 ## Quick start
 
@@ -45,10 +49,10 @@ const userInput = new User()
 In Vuetify:
 
 ```html
-<v-textfield v-model="userInput.name" :rules="rules.name" />
-<v-textfield v-model.number="userInput.age" :rules="rules.age" />
-<v-textfield v-model="userInput.addr" :rules="rules.age" />
-<v-textfield v-model="userInput.color" :rules="rules.color" />
+<v-text-field v-model="userInput.name" :rules="rules.name" />
+<v-text-field v-model.number="userInput.age" :rules="rules.age" />
+<v-text-field v-model="userInput.addr" :rules="rules.age" />
+<v-text-field v-model="userInput.color" :rules="rules.color" />
 ```
 
 In Lancet:
@@ -116,7 +120,7 @@ class User {
 const input = new User()
 const rules = getValidatorRules(User)
 
-<VTextfield v-model={input.name} rules={rules.user}>  // user.name can only be 'Kayne'.
+<Vtext-field v-model={input.name} rules={rules.user}>  // user.name can only be 'Kayne'.
 ```
 
 `CustomRule` accepts one / several function(s) like `(value: unknown) => true | string`.
@@ -125,6 +129,24 @@ The returned value:
 
  - `true`: Indicates that the value that user provides is valid.
  - a `string`: Indicates that the value that user provides is invalid and this returned string will be used as the warning message.
+
+## Error message
+
+Yunomix accepts both a `string` and a function as its error message:
+
+```ts
+class User {
+  @Required('It should not be empty.')
+  @IsString(() => {
+    return window.navigator.language.includes('zh')
+      ? '此项必须是一个字符串.'
+      : 'This field should be a string.'
+  })
+  something: unknown = undefined
+}
+```
+
+Both are OK. Function is very useful for i18n.
 
 ## Example
 

@@ -14,7 +14,6 @@ it('@CustomRule testing.', () => {
     age: number = 0
   }
 
-  const user = new User()
   const rules = getValidatorRules(User)
 
   expect(validate('LancerComet', rules.name)).toBe('You must be Kayne!')

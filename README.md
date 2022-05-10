@@ -24,6 +24,6 @@ This repository contains several web packages of my own.
  - Utils: A personal utility library.  
 [![npm version](https://badge.fury.io/js/@lancercomet%2Futils.svg)](https://badge.fury.io/js/@lancercomet%2Futils)
 
- - Yunomix: A set of validators that are designed for Vuetify and Lancet in Decorator form.  
+ - Yunomix: Yunomix is a validation toolkit which is designed for TypeScript users in AOP form.  
 [![npm version](https://badge.fury.io/js/@lancercomet%2Fyunomix.svg)](https://badge.fury.io/js/@lancercomet%2Fyunomix)
 

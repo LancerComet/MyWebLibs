@@ -35,6 +35,7 @@ describe('Validator testing.', () => {
     expect(validate('#aa4fc315', rules.rule1)).toBe('Please provide a valid hex color, like "#000, #12450D".')
     expect(validate('#AA4FC315', rules.rule1)).toBe('Please provide a valid hex color, like "#000, #12450D".')
 
+    expect(validate(undefined, rules.rule2)).toBe('Please provide a valid hex color, like "#000, #12450d, #00ffaadd".')
     expect(validate('123', rules.rule2)).toBe('Please provide a valid hex color, like "#000, #12450d, #00ffaadd".')
     expect(validate('#ccc', rules.rule2)).toBe(true)
     expect(validate('#4fc315', rules.rule2)).toBe(true)

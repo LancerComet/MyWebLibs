@@ -9,7 +9,7 @@ it('@IsHttpUrl testing.', () => {
 
     @IsHttpUrl({
       allowAutoProto: false,
-      message: 'must be an url'
+      msg: 'must be an url'
     })
     url: string = ''
   }
