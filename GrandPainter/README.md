@@ -24,7 +24,7 @@ paint({
 })
 
 // "Overlay" a image on a canvas.
-GrandPainter.feelTheUniverse({
+paint({
   stage: stageElement,
   image: imageElement,
   x: 50, 
