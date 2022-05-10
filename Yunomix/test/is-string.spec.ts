@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-import { IsString, getValidatorRules } from '../lib'
+import { IsString, getValidatorRules, validate } from '../lib'
 
 it('@IsString should work properly.', () => {
   class User {
@@ -22,15 +22,15 @@ it('@IsString should work properly.', () => {
   }
   const rules = getValidatorRules<User>(User)
 
-  expect(rules.text1[0]('Conceptors')).toBe(true)
-  expect(rules.text1[0]('Conceptors.')).toBe('v <= 10')
+  expect(validate('Conceptor.', rules.text1)).toBe(true)
+  expect(validate('Conceptor..', rules.text1)).toBe('v <= 10')
 
-  expect(rules.text2[0]('')).toBe('v >= 5')
-  expect(rules.text2[0]('The mars and the heaven')).toBe(true)
+  expect(validate('', rules.text2)).toBe('v >= 5')
+  expect(validate('The mars and the heaven', rules.text2)).toBe(true)
 
-  expect(rules.text3[0]('abcd')).toBe('5 <= v <= 10')
-  expect(rules.text3[0]('abcde')).toBe(true)
-  expect(rules.text3[0]('abcdefghij')).toBe(true)
-  expect(rules.text3[0]('abcdefghijk')).toBe('5 <= v <= 10')
-  expect(rules.text3[0](1)).toBe('invalid type')
+  expect(validate('abcd', rules.text3)).toBe('5 <= v <= 10')
+  expect(validate('abcde', rules.text3)).toBe(true)
+  expect(validate('abcdefghij', rules.text3)).toBe(true)
+  expect(validate('abcdefghijk', rules.text3)).toBe('5 <= v <= 10')
+  expect(validate(1, rules.text3)).toBe('invalid type')
 })

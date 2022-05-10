@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-import { NumRange, getValidatorRules } from '../lib'
+import { NumRange, getValidatorRules, validate } from '../lib'
 
 it('@NumRange should work.', () => {
   class User {
@@ -9,9 +9,9 @@ it('@NumRange should work.', () => {
   }
 
   const rules = getValidatorRules(User)
-  expect(typeof rules.number[0](0)).toBe('string')
-  expect(rules.number[0](1)).toBe(true)
-  expect(rules.number[0](10)).toBe(true)
-  expect(typeof rules.number[0](20)).toBe('string')
-  expect(typeof rules.number[0]('abc')).toBe('string')
+  expect(validate(0, rules.number)).toBe('The value should within 1~10.')
+  expect(validate(1, rules.number)).toBe(true)
+  expect(validate(10, rules.number)).toBe(true)
+  expect(validate(20, rules.number)).toBe('The value should within 1~10.')
+  expect(validate('abc', rules.number)).toBe('The value should within 1~10.')
 })

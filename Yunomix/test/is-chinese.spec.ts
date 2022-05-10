@@ -1,13 +1,15 @@
 /* eslint-disable no-undef */
 
-import { getValidatorRules, IsChinese } from '../lib'
+import { getValidatorRules, IsChinese, validate } from '../lib'
 
 it('@IsChinese testing.', () => {
   class User {
-    @IsChinese('must chinese')
+    @IsChinese('must be chinese')
     name: string
   }
-  const rules = getValidatorRules<User>(User)
-  expect(rules.name[0]('kayne')).toBe('must chinese')
-  expect(rules.name[0]('凯恩')).toBe(true)
+
+  const rules = getValidatorRules(User)
+
+  expect(validate('kayne', rules.name)).toBe('must be chinese')
+  expect(validate('凯恩', rules.name)).toBe(true)
 })

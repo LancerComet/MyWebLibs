@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-import { Required, getValidatorRules } from '../lib'
+import { Required, getValidatorRules, validate } from '../lib'
 
 it('@Required should work properly.', () => {
   class User {
@@ -9,10 +9,10 @@ it('@Required should work properly.', () => {
   }
   const rules = getValidatorRules<User>(User)
 
-  expect(rules.name[0]('')).toBe('required')
-  expect(rules.name[0](undefined)).toBe('required')
-  expect(rules.name[0](null)).toBe('required')
-  expect(rules.name[0](0)).toBe(true)
-  expect(rules.name[0](false)).toBe(true)
-  expect(rules.name[0]('Kayne')).toBe(true)
+  expect(validate('', rules.name)).toBe('required')
+  expect(validate(undefined, rules.name)).toBe('required')
+  expect(validate(null, rules.name)).toBe('required')
+  expect(validate(0, rules.name)).toBe(true)
+  expect(validate(false, rules.name)).toBe(true)
+  expect(validate('Kayne', rules.name)).toBe(true)
 })

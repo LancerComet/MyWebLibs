@@ -103,12 +103,32 @@ export function NumRange (min: number, max: number, msg?: string) {
  *
  * @param msg Error message.
  */
-export function IsHttpUrl (msg: string = 'Please provide a valid Http URL.') {
-  return createRegExpTestRule(
-    // eslint-disable-next-line no-useless-escape
-    /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
-    msg
-  )
+export function IsHttpUrl (param?: {
+  /**
+   * If "//some-url.com" is allowed.
+   * @default true
+   */
+  allowAutoProto?: boolean
+
+  /**
+   * Error message.
+   */
+  message?: string
+}) {
+  const allowAutoProto = param?.allowAutoProto ?? true
+  const message = param?.message ?? 'Please provide a valid Http URL.'
+
+  return allowAutoProto
+    ? createRegExpTestRule(
+      // eslint-disable-next-line no-useless-escape
+      /^(https?:)?\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+      message
+    )
+    : createRegExpTestRule(
+      // eslint-disable-next-line no-useless-escape
+      /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+      message
+    )
 }
 
 /**
@@ -214,6 +234,24 @@ export function CustomRule (...fns: Rule[]) {
       setRulesMetaDataByKey(prototypeKey, fn, target)
     })
   }
+}
+
+/**
+ * Execute validation manually.
+ * For people who don't have Vuetify or Lancet.
+ *
+ * @param value Target value.
+ * @param rules Validation rule functions.
+ * @returns {true | string} A true will be returned if validating passed, otherwise a string will be returned.
+ */
+export function validate (value: unknown, rules: Rule[]): true | string {
+  for (const rule of rules) {
+    const reuslt = rule(value)
+    if (typeof reuslt === 'string') {
+      return reuslt
+    }
+  }
+  return true
 }
 
 /**

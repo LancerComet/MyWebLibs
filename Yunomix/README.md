@@ -5,6 +5,8 @@
 
 This is a set of validators that are designed for Vuetify and Lancet in @Decorator form.
 
+But it also can be used without Vuetify or Lancet.
+
 ## Quick start
 
 ```ts
@@ -56,6 +58,25 @@ In Lancet:
 <lct-textfield v-model.number="userInput.age" :rules="rules.age" />
 <lct-textfield v-model="userInput.addr" :rules="rules.age" />
 <lct-textfield v-model="userInput.color" :rules="rules.color" />
+```
+
+Without any UI framework:
+
+```ts
+// Import "validate".
+import { validate } from '@lancercomet/yunomix'
+
+class User {
+  ...
+}
+
+const rules = getValidatorRules(User)
+const userInput = new User()
+
+// A true or a string will be returned.
+// A true means it passed validation.
+// A string means it didn't. This string is used as its error message.
+const isNameValid = validate(userInput.name, rules.name)  // true | string
 ```
 
 ## Validator list
