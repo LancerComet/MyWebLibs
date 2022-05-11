@@ -23,7 +23,7 @@ export default {
     typescript({
       tsconfigOverride: {
         compilerOptions: {
-          target: 'es5',
+          target: 'es5'
         },
         include: [
           'lib/**/*'

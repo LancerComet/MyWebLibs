@@ -33,13 +33,14 @@ module.exports = {
   devServer: {
     publicPath: '/',
     contentBase: resolve('./public'),
-    port: 80,
+    port: 3000,
     proxy: undefined,
     host: '0.0.0.0',
     disableHostCheck: true,
     hot: true,
     inline: true,
-    quiet: true
+    quiet: true,
+    https: true
   },
 
   module: {
