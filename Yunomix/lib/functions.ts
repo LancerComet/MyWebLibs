@@ -1,6 +1,6 @@
+import { ConstructorOf } from '@lancercomet/types'
 import { Rule, Validator } from './types'
 import { VALIDATOR_RULES } from './config'
-import { ConstructorOf } from '@lancercomet/types'
 
 interface IRulesMetaData {
   [key: string]: unknown[]
@@ -34,7 +34,7 @@ function validate (value: unknown, rules: Rule[]): true | string {
  *   name: string = ''
  *
  *   @CustomRule(
- *     v => v > 0 || 'Age must be greator than 0.',
+ *     v => v > 0 || 'Age must be greater than 0.',
  *     v => v < 10 || 'Age must be less than 10.'
  *   )
  *   age: number = 0

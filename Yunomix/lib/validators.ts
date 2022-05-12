@@ -1,13 +1,13 @@
 import { ErrorMessage, MessageFactory, Rule } from './types'
-import { isFunction, isNull, isNumber, isString, isUndefined } from './utils/type'
+import { isArray, isFunction, isNull, isNumber, isString, isUndefined, isBoolean } from './utils/type'
 import { CustomRule } from './functions'
 
-const createErrorMsgFactory = (defaultMsg: string, message?: ErrorMessage): MessageFactory => {
+const createErrorMsgFactory = (defaultMessage: string, userMessage?: ErrorMessage): MessageFactory => {
   return () => {
-    if (!message) {
-      return defaultMsg
+    if (!userMessage) {
+      return defaultMessage
     }
-    return isFunction(message) ? message() : message
+    return isFunction(userMessage) ? userMessage() : userMessage
   }
 }
 
@@ -29,11 +29,29 @@ function Required (msg?: ErrorMessage) {
 }
 
 /**
+ * Indicate this field should be a boolean.
+ *
+ * @param msg Error message.
+ */
+function IsBoolean (msg?: string) {
+  const message = createErrorMsgFactory('This field should be either a true or false.', msg)
+  return CustomRule(
+    v => isBoolean(v) || message()
+  )
+}
+
+/**
  * A field that should be a string.
  *
  * @param {number} [min = 0] Min length.
  * @param {number} [max] Max length.
  * @param msg Define error messages.
+ *
+ * @example
+ * class User {
+ *   @IsString()
+ *   name: string = ''
+ * }
  */
 function IsString (
   min: number = 0,
@@ -130,12 +148,14 @@ const HTTP_URL_REGEXP_2 = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-
 function IsHttpUrl (param?: {
   /**
    * If "//some-url.com" is allowed.
+   *
    * @default true
    */
   allowAutoProto?: boolean
 
   /**
    * Error message.
+   *
    * @default 'Please provide a valid Http URL.'
    */
   msg?: ErrorMessage
@@ -224,15 +244,71 @@ function IsHexColor (params?: {
   return CustomRule(...fns)
 }
 
+/**
+ * Indicate that target should be an array.
+ *
+ * @param param Validation config.
+ */
+function IsArray (param?: {
+  minLength?: number
+  maxLength?: number
+  msg?: {
+    incorrectType?: string
+    incorrectLength?: string
+  }
+}) {
+  const minLength = param?.minLength ?? 0
+  const maxLength = param?.maxLength
+  const incorrectType = createErrorMsgFactory('This field should be an array.', param?.msg?.incorrectType)
+  const incorrectLength = createErrorMsgFactory(
+    isNumber(maxLength)
+      ? `The length should between ${minLength} - ${maxLength}.`
+      : `The count of members must be greater than ${minLength}.`,
+    param?.msg?.incorrectLength
+  )
+  return CustomRule(
+    v => isArray(v) || incorrectType(),
+    v => v.length >= minLength || incorrectLength(),
+    v => (isNumber(maxLength) ? v.length <= maxLength : true) || incorrectLength()
+  )
+}
+
+/**
+ * Indicate the field should matches the provided values.
+ */
+function MatchValue (param: {
+  /**
+   * Values that user input should match.
+   *
+   * @type {any[]}
+   */
+  values: any[]
+
+  /**
+   * Error message.
+   */
+  msg?: string
+}) {
+  const values = isArray(param.values) ? param.values : []
+  const defaultMsg = `Please provide one of these value: "${values.join(', ')}".`
+  const message = createErrorMsgFactory(defaultMsg, param.msg)
+  return CustomRule(
+    v => values.indexOf(v) > -1 || message()
+  )
+}
+
 export {
-  Required,
-  IsString,
-  IsEmail,
+  createErrorMsgFactory,
+  IsArray,
+  IsBoolean,
   IsChinese,
+  IsEmail,
   IsEnglish,
-  IsNumber,
-  NumRange,
-  IsHttpUrl,
   IsHexColor,
-  createErrorMsgFactory
+  IsHttpUrl,
+  IsNumber,
+  IsString,
+  MatchValue,
+  NumRange,
+  Required
 }
