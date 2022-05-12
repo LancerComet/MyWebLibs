@@ -1,6 +1,6 @@
 {
   "name": "@lancercomet/yunomix",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Yunomix is a validation toolkit which is designed for TypeScript users in AOP form.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
@@ -23,7 +23,11 @@
     "email": "chw644@hotmail.com"
   },
   "contributors": [
-    { "name": "KayneWang", "url": "https://github.com/KayneWang", "email": "w.zengkai@gmail.com" }
+    {
+      "name": "KayneWang",
+      "url": "https://github.com/KayneWang",
+      "email": "w.zengkai@gmail.com"
+    }
   ],
   "license": "Apache-2.0",
   "keywords": [
