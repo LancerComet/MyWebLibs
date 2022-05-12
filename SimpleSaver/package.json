@@ -8,6 +8,11 @@
     "dist/",
     "README.md"
   ],
+  "keywords": [
+    "streamSaver",
+    "multi-file",
+    "zip"
+  ],
   "scripts": {
     "dev": "webpack-dev-server --config ./webpack.config.js",
     "build": "rollup -c",
@@ -22,6 +27,14 @@
   "author": {
     "name": "KayneWang",
     "email": "w.zengkai@gmail.com"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "url": "https://github.com/LancerComet/MyWebLibs",
+    "type": "git"
   },
   "license": "ISC",
   "devDependencies": {
