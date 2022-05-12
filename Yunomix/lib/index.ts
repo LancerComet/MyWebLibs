@@ -6,10 +6,18 @@
  * @url https://github.com/LancerComet/MyWebLibs/tree/master/Yunomix
  */
 export {
-  Required,
-  IsString, IsHttpUrl, IsEmail, IsHexColor,
-  IsChinese, IsEnglish,
-  IsNumber, NumRange
+  IsArray,
+  IsBoolean,
+  IsChinese,
+  IsEmail,
+  IsEnglish,
+  IsHexColor,
+  IsHttpUrl,
+  IsNumber,
+  IsString,
+  MatchValue,
+  NumRange,
+  Required
 } from './validators'
 export { CustomRule, validate, getValidatorRules } from './functions'
 export { Rule, Validator, ErrorMessage, MessageFactory } from './types'

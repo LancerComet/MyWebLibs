@@ -15,5 +15,12 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    'import/order': [
+      'error', {
+        groups: [
+          'builtin', 'external', 'parent', 'index', 'sibling', 'internal', 'object', 'type'
+        ]
+      }
+    ]
   }
 }

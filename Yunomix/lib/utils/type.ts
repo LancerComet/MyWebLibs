@@ -2,6 +2,10 @@ const isString = (target: any): target is string => {
   return typeof target === 'string'
 }
 
+const isBoolean = (target: any): target is boolean => {
+  return typeof target === 'boolean'
+}
+
 const isNumber = (target: any): target is number => {
   return typeof target === 'number'
 }
@@ -18,10 +22,16 @@ const isFunction = (target: any): target is () => any => {
   return typeof target === 'function'
 }
 
+const isArray = (target: any): target is any[] => {
+  return Object.prototype.toString.call(target) === '[object Array]'
+}
+
 export {
-  isString,
-  isNumber,
-  isUndefined,
+  isArray,
+  isBoolean,
   isFunction,
-  isNull
+  isNumber,
+  isNull,
+  isString,
+  isUndefined
 }

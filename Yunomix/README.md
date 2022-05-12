@@ -85,15 +85,18 @@ const isNameValid = validate(userInput.name, rules.name)  // true | string
 
 ## Validator list
 
- - Required
- - IsString
- - IsEmail
+ - IsArray
+ - IsBoolean
  - IsChinese
+ - IsEmail
  - IsEnglish
- - IsNumber
- - NumRange
- - IsHttpUrl
  - IsHexColor
+ - IsHttpUrl
+ - IsNumber
+ - IsString
+ - MatchValue
+ - NumRange
+ - Required
  - CustomRule
 
 ## Custom Rule
