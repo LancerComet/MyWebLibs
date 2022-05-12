@@ -1,7 +1,7 @@
 interface IFile {
   url?: string
-  name: string
-  file?: () => ReadableStream<Uint8Array>
+  name?: string
+  stream?: () => ReadableStream<Uint8Array>
 }
 
 export {

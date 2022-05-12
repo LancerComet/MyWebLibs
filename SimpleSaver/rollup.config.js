@@ -1,6 +1,7 @@
 import typescript from 'rollup-plugin-typescript2'
 import commonjs from 'rollup-plugin-commonjs'
 import del from 'rollup-plugin-delete'
+import externalGlobals from 'rollup-plugin-external-globals'
 
 export default {
   input: './lib/index.ts',
@@ -16,6 +17,8 @@ export default {
       format: 'es'
     }
   ],
+
+  external: ['web-streams-polyfill/ponyfill'],
 
   plugins: [
     commonjs(),
@@ -33,6 +36,12 @@ export default {
 
     del({
       targets: 'dist/*'
+    }),
+
+    externalGlobals({
+      streamsaver: 'streamSaver',
+      jsbi: 'jsbi',
+      'web-streams-polyfill/ponyfill': 'ponyfill'
     })
   ]
 }

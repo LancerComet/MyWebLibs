@@ -1,3 +1,11 @@
+/* global globalThis */
+/**
+ * Conflux
+ * Build (and read) zip files with whatwg streams in the browser.
+ *
+ * @author Transcend Inc. <https://transcend.io>
+ * @license MIT
+ */
 // @ts-nocheck
 import { TransformStream as PonyfillTransformStream } from 'web-streams-polyfill/ponyfill'
 import JSBI from './bigint'
@@ -161,7 +169,7 @@ class ZipTransformer {
 
 const ModernTransformStream =
   globalThis.TransformStream ||
-  globalThis.WebStreamsPolyfill?.TransformStream ||
+  globalThis.WebStreamsPolyfill.TransformStream ||
   PonyfillTransformStream
 
 class Writer extends ModernTransformStream {

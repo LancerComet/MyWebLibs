@@ -1,7 +1,7 @@
 {
   "name": "@kaynewang/simple-saver",
   "version": "1.0.0",
-  "description": "A support multi-file saving tool.",
+  "description": "A simple saving tool.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "files": [
@@ -41,6 +41,7 @@
     "rollup": "^2.61.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-external-globals": "^0.6.1",
     "rollup-plugin-typescript2": "^0.31.1",
     "ts-jest": "^27.1.2",
     "ts-loader": "^7.0.5",
@@ -51,7 +52,6 @@
     "webpack-dev-server": "^3.11.3"
   },
   "dependencies": {
-    "@transcend-io/conflux": "^3.2.2",
     "jsbi": "^4.3.0",
     "pako": "^2.0.4",
     "streamsaver": "^2.0.6",

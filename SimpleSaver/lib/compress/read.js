@@ -1,3 +1,11 @@
+/* eslint-disable no-underscore-dangle */
+/**
+ * Conflux
+ * Read (and build) zip files with whatwg streams in the browser.
+ *
+ * @author Transcend Inc. <https://transcend.io>
+ * @license MIT
+ */
 // @ts-nocheck
 import { Inflate } from 'pako'
 import JSBI from './bigint'
