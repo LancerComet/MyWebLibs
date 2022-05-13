@@ -35,10 +35,18 @@ const contour = (checkIsNotTransparent: (x: number, y: number) => boolean, start
   do {
     // determine marching squares index
     i = 0
-    if (checkIsNotTransparent(x - 1, y - 1)) i += 1
-    if (checkIsNotTransparent(x, y - 1)) i += 2
-    if (checkIsNotTransparent(x - 1, y)) i += 4
-    if (checkIsNotTransparent(x, y)) i += 8
+    if (checkIsNotTransparent(x - 1, y - 1)) {
+      i += 1
+    }
+    if (checkIsNotTransparent(x, y - 1)) {
+      i += 2
+    }
+    if (checkIsNotTransparent(x - 1, y)) {
+      i += 4
+    }
+    if (checkIsNotTransparent(x, y)) {
+      i += 8
+    }
 
     // determine next direction
     if (i === 6) {
