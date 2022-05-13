@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [14.x]
 
     steps:
       - name: Checkout code
@@ -21,22 +21,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Test Fetcher
-        working-directory: ./Fetcher
-        run: npm ci --quiet --no-progress && npm test
-
-      - name: Test HtmlParser.
-        working-directory: ./HtmlParser
-        run: npm ci --quiet --no-progress && npm test
-
-      - name: Test Types
-        working-directory: ./Types
-        run: npm ci --quiet --no-progress && npm test
-
-      - name: Test Utils
-        working-directory: ./Utils
-        run: npm ci --quiet --no-progress && npm test
-
-      - name: Test Yunomix
-        working-directory: ./Yunomix
+      - name: Test
         run: npm ci --quiet --no-progress && npm test
