@@ -258,31 +258,6 @@ function fillColor (canvas: HTMLCanvasElement, color: string) {
   context.fillRect(0, 0, canvas.width, canvas.height)
 }
 
-/**
- * Create a bordered image.
- *
- * @param {HTMLImageElement | HTMLCanvasElement} image Target image.
- * @param borderSize Border size, px.
- * @param color Border color.
- */
-function borderImage (image: HTMLImageElement | HTMLCanvasElement, borderSize: number, color: string): HTMLCanvasElement {
-  const width = image.width + 2 * borderSize
-  const height = image.height + 2 * borderSize
-
-  const canvas = createCanvas(width, height)
-  const context = getContext(canvas)
-  context.drawImage(image, 0, 0, width, height)
-  context.save()
-  context.globalCompositeOperation = 'source-in'
-  context.fillStyle = color
-  context.fillRect(0, 0, canvas.width, canvas.height)
-  context.restore()
-
-  context.drawImage(image, borderSize, borderSize)
-
-  return canvas
-}
-
 export {
   createCanvas,
   getContext,
@@ -292,6 +267,7 @@ export {
   createTextCanvas,
   circlizeCanvas,
   createStretchUniformImage,
-  fillColor,
-  borderImage
+  fillColor
 }
+
+export { borderImage } from './border-image'

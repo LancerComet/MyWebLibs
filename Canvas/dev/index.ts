@@ -6,5 +6,5 @@ import { borderImage, createCanvasByImageUrl, drawImage } from '../lib'
   const image = await createCanvasByImageUrl('/test.png')
   const borderedImage = borderImage(image, 5, 'red')
 
-  await drawImage(borderedImage, canvas, 50, 50)
+  await drawImage(borderedImage, canvas, 0, 0)
 })()
