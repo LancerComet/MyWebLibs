@@ -253,8 +253,8 @@ function IsArray (param?: {
   minLength?: number
   maxLength?: number
   msg?: {
-    incorrectType?: string
-    incorrectLength?: string
+    incorrectType?: ErrorMessage
+    incorrectLength?: ErrorMessage
   }
 }) {
   const minLength = param?.minLength ?? 0
