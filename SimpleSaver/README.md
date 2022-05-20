@@ -1,6 +1,6 @@
 # Simple-saver
 
-Dependent on [StreamSaver.js](https://github.com/jimmywarting/StreamSaver.js).
+This library helps you to download multi-file or single file easily, it's dependent on [StreamSaver.js](https://github.com/jimmywarting/StreamSaver.js) that's an awesome project.
 
 ## Features
 

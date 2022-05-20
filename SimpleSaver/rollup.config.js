@@ -10,7 +10,7 @@ export default {
     {
       file: './dist/index.js',
       format: 'umd',
-      name: 'MangaBridge'
+      name: 'SimpleSaver'
     },
     {
       file: './dist/index.esm.js',

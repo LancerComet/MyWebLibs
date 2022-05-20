@@ -1,7 +1,7 @@
 {
   "name": "@kaynewang/simple-saver",
   "version": "1.0.1",
-  "description": "A simple saving tool.",
+  "description": "This package can help you download multi-file easily.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
   "files": [
@@ -36,7 +36,7 @@
     "url": "https://github.com/LancerComet/MyWebLibs",
     "type": "git"
   },
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@types/streamsaver": "^2.0.1",
