@@ -1,0 +1,73 @@
+{
+  "name": "@kaynewang/simple-saver",
+  "version": "1.0.2",
+  "description": "This package can help you download multi-file easily.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "keywords": [
+    "streamSaver",
+    "multi-file",
+    "zip"
+  ],
+  "scripts": {
+    "dev": "webpack-dev-server --config ./webpack.config.js",
+    "build": "rollup -c",
+    "lint": "eslint ./lib/**",
+    "test": "jest",
+    "prebuild": "npm run lint",
+    "pretest": "npm run build",
+    "preversion": "npm run test",
+    "prepublish": "npm run test",
+    "postbuild": "node ./post-build.js"
+  },
+  "author": {
+    "name": "KayneWang",
+    "email": "w.zengkai@gmail.com"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "url": "https://github.com/LancerComet/MyWebLibs",
+    "type": "git"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/streamsaver": "^2.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "html-webpack-plugin": "^4.5.2",
+    "jest": "^27.4.5",
+    "jest-useragent-mock": "^0.1.1",
+    "rollup": "^2.61.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-external-globals": "^0.6.1",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "ts-jest": "^27.1.2",
+    "ts-loader": "^7.0.5",
+    "typescript": "^4.5.4",
+    "typescript-formatter": "^7.2.2",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.3"
+  },
+  "dependencies": {
+    "jsbi": "^4.3.0",
+    "pako": "^2.0.4",
+    "streamsaver": "^2.0.6",
+    "web-streams-polyfill": "^3.2.1"
+  }
+}
