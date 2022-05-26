@@ -2,4 +2,4 @@
 
 Canvas is a canvas utility library.
 
-This lib is still under construction.
+It contains some functions to deal with canvas.
