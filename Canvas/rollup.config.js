@@ -9,7 +9,7 @@ export default {
     {
       file: './dist/index.js',
       format: 'umd',
-      name: 'MangaBridge'
+      name: 'Canvas'
     },
     {
       file: './dist/index.esm.js',
