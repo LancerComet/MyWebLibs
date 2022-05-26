@@ -6,6 +6,9 @@ This repository contains several web packages of my own.
 
 ## List
 
+ - Canvas: A Canvas utility.  
+[![npm version](https://badge.fury.io/js/@lancercomet%2Fcanvas.svg)](https://badge.fury.io/js/@lancercomet%2Fcanvas)
+
  - Fetcher: Yet another fetcher library. A wrapper of native fetch.  
 [![npm version](https://badge.fury.io/js/@lancercomet%2Ffetcher.svg)](https://badge.fury.io/js/@lancercomet%2Ffetcher)
 
