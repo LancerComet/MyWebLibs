@@ -1,6 +1,6 @@
 {
   "name": "@kaynewang/simple-saver",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This package can help you download multi-file easily.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
@@ -19,9 +19,7 @@
     "lint": "eslint ./lib/**",
     "test": "jest",
     "prebuild": "npm run lint",
-    "pretest": "npm run build",
-    "preversion": "npm run test",
-    "prepublish": "npm run test",
+    "prepublish": "npm run build",
     "postbuild": "node ./post-build.js"
   },
   "author": {

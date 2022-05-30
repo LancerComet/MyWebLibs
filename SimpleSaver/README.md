@@ -6,6 +6,9 @@ This library helps you to download multi-file or single file easily, it's depend
 
   - Auto compressed when you choose multiple files.
   - Auto fetch when you set url.
+  - Support filesystem api.
+
+> Note: If you want to use filesystem api, please check if [your browser](https://developer.mozilla.org/en-US/docs/Web/API/Window/showSaveFilePicker) supports it.
 
 ## Quick Start
 
@@ -47,6 +50,16 @@ const ss = new SimpleSaver()
 const file = {
 name: 'kayne.txt',
 stream: () => new Response('Kayne!!!').body
+}
+ss.saveFileAs(file)
+
+// filesystem api single-file save
+const ss = new SimpleSaver({
+  useFileSystem: true
+})
+const file = {
+  name: 'kayne.txt',
+  stream: () => new Response('Kayne!!!').body
 }
 ss.saveFileAs(file)
 ```
