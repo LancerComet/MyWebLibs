@@ -1,9 +1,12 @@
-import { IFile } from './types'
+import { IFile, IOpts } from './types'
 import streamSaver from 'streamsaver'
 import { Writer } from './compress'
 import { ModernReadableStream } from './readable-stream'
+import { FileSystemService } from './fileSystem'
 
 class SimpleSaver {
+  private useFileSystem: boolean = false
+
   private async batchSave (filename: string, files: IFile[]) {
     const fileStream = streamSaver.createWriteStream(filename + '.zip')
     const _files = files.values()
@@ -24,6 +27,7 @@ class SimpleSaver {
         })
       }
     })
+    // await myReadable.pipeThrough(new Writer()).pipeTo(ws)
 
     return myReadable
       // @ts-ignore
@@ -51,13 +55,30 @@ class SimpleSaver {
    * @param file
    */
   async saveFileAs (file: IFile) {
-    const fileStream = streamSaver.createWriteStream(file.name)
+    let fileStream = streamSaver.createWriteStream(file.name)
+    const stream = file.stream
+
+    if (this.useFileSystem) {
+      const handle = await FileSystemService.showSaveFilePicker({
+        suggestedName: file.name
+      })
+      if (handle) {
+        fileStream = await handle.createWritable()
+      } else {
+        console.warn('Your browser is not support filesystem api.')
+      }
+    }
+
     if (file.url) {
       const { body } = await fetch(file.url)
       return body.pipeTo(fileStream)
     }
-    const stream = file.stream
+
     return stream().pipeTo(fileStream)
+  }
+
+  constructor (opt?: IOpts) {
+    this.useFileSystem = opt?.useFileSystem ?? false
   }
 }
 

@@ -4,6 +4,11 @@ interface IFile {
   stream?: () => ReadableStream<Uint8Array>
 }
 
+interface IOpts {
+  useFileSystem?: boolean
+}
+
 export {
-  IFile
+  IFile,
+  IOpts
 }
