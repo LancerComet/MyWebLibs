@@ -27,7 +27,6 @@ class SimpleSaver {
         })
       }
     })
-    // await myReadable.pipeThrough(new Writer()).pipeTo(ws)
 
     return myReadable
       // @ts-ignore
