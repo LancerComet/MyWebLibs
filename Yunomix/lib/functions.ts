@@ -34,41 +34,23 @@ function validate (value: unknown, rules: Rule[]): true | string {
  */
 function validateAll <T> (target: T): true | string {
   const keys = Object.keys(target) as Array<keyof T>
-  const rules = getValidatorRules(target.constructor as ConstructorOf<T>)
-  let result: true | string = true
-
-  const walkToValidate = <C> (item: C): true | string => {
-    const rules = getValidatorRules(item.constructor as ConstructorOf<C>)
-    const keys = Object.keys(item) as Array<keyof C>
-    for (let i = 0; i < keys.length; i++) {
-      const k = keys[i]
-      const value = item[k]
-      if (typeof value === 'object') {
-        return walkToValidate(value)
-      } else {
-        const isValid = validate(value, rules[k])
-        if (typeof isValid === 'string') {
-          return `${k}: ${isValid}`
-        }
-      }
-    }
-    return true
-  }
-
   for (let i = 0; i < keys.length; i++) {
     const k = keys[i]
     const value = target[k]
     if (typeof value === 'object') {
-      result = walkToValidate(value)
+      const isValid = validateAll(value)
+      if (typeof isValid === 'string') {
+        return isValid
+      }
     } else {
+      const rules = getValidatorRules(target.constructor as ConstructorOf<T>)
       const isValid = validate(value, rules[k])
       if (typeof isValid === 'string') {
-        result = `${k}: ${isValid}`
+        return `${k}: ${isValid}`
       }
     }
   }
-
-  return result
+  return true
 }
 
 /**
