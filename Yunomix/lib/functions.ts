@@ -1,6 +1,7 @@
 import { ConstructorOf } from '@lancercomet/types'
 import { Rule, Validator } from './types'
 import { VALIDATOR_RULES } from './config'
+import { isArray, isNull } from './utils/type'
 
 interface IRulesMetaData {
   [key: string]: unknown[]
@@ -37,16 +38,16 @@ function validateAll <T> (target: T): true | string {
   for (let i = 0; i < keys.length; i++) {
     const k = keys[i]
     const value = target[k]
-    if (typeof value === 'object') {
-      const isValid = validateAll(value)
-      if (typeof isValid === 'string') {
-        return isValid
+    if (typeof value === 'object' && !isArray(value) && !isNull(value)) {
+      const validateResult = validateAll(value)
+      if (typeof validateResult === 'string') {
+        return validateResult
       }
     } else {
       const rules = getValidatorRules(target.constructor as ConstructorOf<T>)
-      const isValid = validate(value, rules[k])
-      if (typeof isValid === 'string') {
-        return `${k}: ${isValid}`
+      const validateResult = validate(value, rules[k])
+      if (typeof validateResult === 'string') {
+        return validateResult
       }
     }
   }
