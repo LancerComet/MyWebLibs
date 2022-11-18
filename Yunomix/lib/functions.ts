@@ -16,12 +16,59 @@ interface IRulesMetaData {
  */
 function validate (value: unknown, rules: Rule[]): true | string {
   for (const rule of rules) {
-    const reuslt = rule(value)
-    if (typeof reuslt === 'string') {
-      return reuslt
+    const result = rule(value)
+    if (typeof result === 'string') {
+      return result
     }
   }
   return true
+}
+
+/**
+ * Execute all validation manually.
+ * Note: This function will validate all rules what the target included.
+ *
+ * @param target Target class.
+ * @return { true | string } Same as the validate function.
+ * But the string will be included property, like: 'username: is required!'
+ */
+function validateAll <T> (target: T): true | string {
+  const keys = Object.keys(target) as Array<keyof T>
+  const rules = getValidatorRules(target.constructor as ConstructorOf<T>)
+  let result: true | string = true
+
+  const walkToValidate = <C> (item: C): true | string => {
+    const rules = getValidatorRules(item.constructor as ConstructorOf<C>)
+    const keys = Object.keys(item) as Array<keyof C>
+    for (let i = 0; i < keys.length; i++) {
+      const k = keys[i]
+      const value = item[k]
+      if (typeof value === 'object') {
+        return walkToValidate(value)
+      } else {
+        const isValid = validate(value, rules[k])
+        if (typeof isValid === 'string') {
+          return `${k}: ${isValid}`
+        }
+      }
+    }
+    return true
+  }
+
+  for (let i = 0; i < keys.length; i++) {
+    const k = keys[i]
+    const value = target[k]
+    if (typeof value === 'object') {
+      result = walkToValidate(value)
+    } else {
+      const isValid = validate(value, rules[k])
+      if (typeof isValid === 'string') {
+        result = `${k}: ${isValid}`
+      }
+    }
+  }
+
+  return result
 }
 
 /**
@@ -61,6 +108,7 @@ function getValidatorRules<T> (Constructor: ConstructorOf<T>): Validator<T> {
 
 export {
   validate,
+  validateAll,
   CustomRule,
   getValidatorRules
 }
