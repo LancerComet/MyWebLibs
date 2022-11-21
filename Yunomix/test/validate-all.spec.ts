@@ -35,7 +35,7 @@ it('Nested rules should be supported', function () {
     return validateAll(b)
   }
 
-  expect(test1()).toBe('d: required')
-  expect(test2()).toBe('c: required')
+  expect(test1()).toBe('required')
+  expect(test2()).toBe('required')
   expect(test3()).toBe(true)
 })
