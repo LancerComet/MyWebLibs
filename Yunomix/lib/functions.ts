@@ -1,6 +1,7 @@
 import { ConstructorOf } from '@lancercomet/types'
 import { Rule, Validator } from './types'
 import { VALIDATOR_RULES } from './config'
+import { isArray, isNull } from './utils/type'
 
 interface IRulesMetaData {
   [key: string]: unknown[]
@@ -16,9 +17,38 @@ interface IRulesMetaData {
  */
 function validate (value: unknown, rules: Rule[]): true | string {
   for (const rule of rules) {
-    const reuslt = rule(value)
-    if (typeof reuslt === 'string') {
-      return reuslt
+    const result = rule(value)
+    if (typeof result === 'string') {
+      return result
+    }
+  }
+  return true
+}
+
+/**
+ * Execute all validation manually.
+ * Note: This function will validate all rules what the target included.
+ *
+ * @param target Target class.
+ * @return { true | string } Same as the validate function.
+ * But the string will be included property, like: 'username: is required!'
+ */
+function validateAll <T> (target: T): true | string {
+  const keys = Object.keys(target) as Array<keyof T>
+  for (let i = 0; i < keys.length; i++) {
+    const k = keys[i]
+    const value = target[k]
+    if (typeof value === 'object' && !isArray(value) && !isNull(value)) {
+      const validateResult = validateAll(value)
+      if (typeof validateResult === 'string') {
+        return validateResult
+      }
+    } else {
+      const rules = getValidatorRules(target.constructor as ConstructorOf<T>)
+      const validateResult = validate(value, rules[k])
+      if (typeof validateResult === 'string') {
+        return validateResult
+      }
     }
   }
   return true
@@ -61,6 +91,7 @@ function getValidatorRules<T> (Constructor: ConstructorOf<T>): Validator<T> {
 
 export {
   validate,
+  validateAll,
   CustomRule,
   getValidatorRules
 }
