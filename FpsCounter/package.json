@@ -1,0 +1,42 @@
+{
+  "name": "@lancercomet/fps-counter",
+  "version": "1.0.0",
+  "description": "Read fps.",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "author": {
+    "name": "LancerComet",
+    "email": "chw644@hotmail.com"
+  },
+  "keywords": [
+    "FPS",
+    "Utils",
+    "LancerComet"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.esm.js",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LancerComet/MyWebLibs.git"
+  },
+  "scripts": {
+    "build": "rollup -c --bundleConfigAsCjs"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "rollup": "^3.21.5",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "typescript": "^4.6.3"
+  }
+}

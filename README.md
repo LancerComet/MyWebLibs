@@ -12,6 +12,9 @@ This repository contains several web packages of my own.
  - Fetcher: Yet another fetcher library. A wrapper of native fetch.  
 [![npm version](https://badge.fury.io/js/@lancercomet%2Ffetcher.svg)](https://badge.fury.io/js/@lancercomet%2Ffetcher)
 
+- FpsCounter: Read fps.  
+[![npm version](https://badge.fury.io/js/@lancercomet%2Ffps-counter.svg)](https://badge.fury.io/js/@lancercomet%2Ffps-counter)
+
 - GrandPainter: A library to let you draw images on canvas with layer effects.  
 [![npm version](https://badge.fury.io/js/@lancercomet%2Fgrand-painter.svg)](https://badge.fury.io/js/@lancercomet%2Fgrand-painter)
 
