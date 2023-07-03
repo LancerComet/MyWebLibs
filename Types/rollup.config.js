@@ -8,8 +8,7 @@ export default {
   output: [
     {
       file: './dist/index.js',
-      format: 'umd',
-      name: 'Types'
+      format: 'cjs',
     },
     {
       file: './dist/index.esm.js',

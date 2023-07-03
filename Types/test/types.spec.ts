@@ -2,7 +2,7 @@ import {
   ConstructorOf, DateString,
   IAsyncResult, Int64String, IntBoolean,
   JsonString
-} from '../lib/index'
+} from '../lib'
 
 describe('Types unit testing.', () => {
   it('Int64String', () => {
