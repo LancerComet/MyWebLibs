@@ -9,6 +9,9 @@ This repository contains several web packages of my own.
  - Canvas: A Canvas utility.  
 [![npm version](https://badge.fury.io/js/@lancercomet%2Fcanvas.svg)](https://badge.fury.io/js/@lancercomet%2Fcanvas)
 
+ - ESLintRules: My ESLint config.  
+[![npm version](https://badge.fury.io/js/@lancercomet%2Feslint-config-eslint-rules.svg)](https://badge.fury.io/js/@lancercomet%2Feslint-config-eslint-rules)
+
  - Fetcher: Yet another fetcher library. A wrapper of native fetch.  
 [![npm version](https://badge.fury.io/js/@lancercomet%2Ffetcher.svg)](https://badge.fury.io/js/@lancercomet%2Ffetcher)
 
