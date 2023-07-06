@@ -107,6 +107,20 @@ class List<T> {
     return new List(result)
   }
 
+  shuffle (): void {
+    let currentIndex = this._items.length
+    let temporaryValue: T
+    let randomIndex: number
+
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex)
+      currentIndex -= 1
+      temporaryValue = this._items[currentIndex]
+      this._items[currentIndex] = this._items[randomIndex]
+      this._items[randomIndex] = temporaryValue
+    }
+  }
+
   skip (count: number): List<T> {
     const result = new List<T>()
     for (let i = count; i < this._items.length; i++) {

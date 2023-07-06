@@ -79,6 +79,23 @@ describe('List testing.', () => {
     expect(newList.toArray()).toEqual([1, 2, 2, 4, 3, 6, 4, 8, 5, 10])
   })
 
+  it('shuffle', () => {
+    const initialItems = [1, 2, 3, 4, 5]
+    const list = new List(initialItems.slice())
+    list.shuffle()
+    const shuffledItems = list.toArray()
+
+    // Verify that all original items are still present after shuffling
+    for (const item of initialItems) {
+      expect(shuffledItems).toContain(item)
+    }
+
+    // Due to the randomness of the shuffle, it is highly unlikely (but not impossible)
+    // that the shuffled items are in the exact same order as the initial items.
+    // If this test occasionally fails, that does not necessarily indicate a problem.
+    expect(shuffledItems).not.toEqual(initialItems)
+  })
+
   test('skip', () => {
     const skippedList = list.skip(2)
     expect(skippedList.length).toBe(3)
