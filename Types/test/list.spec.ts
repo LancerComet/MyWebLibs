@@ -81,8 +81,7 @@ describe('List testing.', () => {
 
   it('shuffle', () => {
     const initialItems = [1, 2, 3, 4, 5]
-    const list = new List(initialItems.slice())
-    list.shuffle()
+    const list = new List(initialItems).shuffle()
     const shuffledItems = list.toArray()
 
     // Verify that all original items are still present after shuffling
