@@ -30,10 +30,9 @@ function validate (value: unknown, rules: Rule[]): true | string {
  * Note: This function will validate all rules what the target included.
  *
  * @param target Target class.
- * @return { true | string } Same as the validate function.
- * But the string will be included property, like: 'username: is required!'
+ * @return {string[]} Error message. Will be empay if no error was found.
  */
-function validateAll <T> (target: T): true | string[] {
+function validateAll <T> (target: T): string[] {
   const keys = Object.keys(target) as Array<keyof T>
 
   const result: string[] = []
@@ -58,11 +57,7 @@ function validateAll <T> (target: T): true | string[] {
     }
   }
 
-  if (result.length) {
-    return result
-  }
-
-  return true
+  return result
 }
 
 /**

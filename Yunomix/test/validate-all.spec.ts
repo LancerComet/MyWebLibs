@@ -42,6 +42,6 @@ it('Nested rules should be supported', function () {
 
   expect(test1()).toEqual(['D_REQUIRED'])
   expect(test2()).toEqual(['C_REQUIRED'])
-  expect(test3()).toBe(true)
+  expect(test3()).toEqual([])
   expect(test4()).toEqual(['D_REQUIRED', 'C_REQUIRED'])
 })
