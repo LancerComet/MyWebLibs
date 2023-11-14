@@ -1,6 +1,6 @@
 {
   "name": "@lancercomet/yunomix",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Yunomix is a validation toolkit which is designed for TypeScript users in AOP form.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
