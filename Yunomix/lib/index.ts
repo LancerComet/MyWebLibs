@@ -19,5 +19,5 @@ export {
   NumRange,
   Required
 } from './validators'
-export { CustomRule, validate, getValidatorRules } from './functions'
+export { CustomRule, validate, validateAll, getValidatorRules } from './functions'
 export { Rule, Validator, ErrorMessage, MessageFactory } from './types'
