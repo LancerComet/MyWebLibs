@@ -5,14 +5,14 @@ import { validateAll } from '../lib/functions'
 
 it('Nested rules should be supported', function () {
   class A {
-    @Required('required')
+    @Required('D_REQUIRED')
     d: string = ''
   }
 
   class B {
     a: A = new A()
 
-    @Required('required')
+    @Required('C_REQUIRED')
     c: string = ''
   }
 
@@ -35,7 +35,13 @@ it('Nested rules should be supported', function () {
     return validateAll(b)
   }
 
-  expect(test1()).toBe('required')
-  expect(test2()).toBe('required')
+  const test4 = () => {
+    const b = new B()
+    return validateAll(b)
+  }
+
+  expect(test1()).toEqual(['D_REQUIRED'])
+  expect(test2()).toEqual(['C_REQUIRED'])
   expect(test3()).toBe(true)
+  expect(test4()).toEqual(['D_REQUIRED', 'C_REQUIRED'])
 })

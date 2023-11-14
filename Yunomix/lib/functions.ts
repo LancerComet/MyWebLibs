@@ -33,24 +33,35 @@ function validate (value: unknown, rules: Rule[]): true | string {
  * @return { true | string } Same as the validate function.
  * But the string will be included property, like: 'username: is required!'
  */
-function validateAll <T> (target: T): true | string {
+function validateAll <T> (target: T): true | string[] {
   const keys = Object.keys(target) as Array<keyof T>
+
+  const result: string[] = []
   for (let i = 0; i < keys.length; i++) {
     const k = keys[i]
     const value = target[k]
     if (typeof value === 'object' && !isArray(value) && !isNull(value)) {
       const validateResult = validateAll(value)
-      if (typeof validateResult === 'string') {
-        return validateResult
+      if (Array.isArray(validateResult)) {
+        validateResult.forEach(item => {
+          if (typeof item === 'string') {
+            result.push(item)
+          }
+        })
       }
     } else {
       const rules = getValidatorRules(target.constructor as ConstructorOf<T>)
       const validateResult = validate(value, rules[k])
       if (typeof validateResult === 'string') {
-        return validateResult
+        result.push(validateResult)
       }
     }
   }
+
+  if (result.length) {
+    return result
+  }
+
   return true
 }
 
