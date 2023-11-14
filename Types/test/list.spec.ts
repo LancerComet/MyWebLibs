@@ -47,8 +47,43 @@ describe('List testing.', () => {
   })
 
   test('orderBy', () => {
-    const orderedList = list.orderBy(item => item)
-    expect(orderedList.toArray()).toEqual([1, 2, 3, 4, 5])
+    expect(
+      new List([5, 4, 3, 2, 1])
+        .orderBy(item => item)
+        .toArray()
+    ).toEqual([1, 2, 3, 4, 5])
+
+    expect(
+      new List(['c', 'b', 'a'])
+        .orderBy(item => item)
+        .toArray()
+    ).toEqual(['a', 'b', 'c'])
+
+    expect(
+      new List([
+        { name: 'nDelta' },
+        { name: 'nAlpha' },
+        { name: 'nBeta' }
+      ]).orderBy(item => item.name)
+        .toArray()
+    ).toEqual([
+      { name: 'nAlpha' },
+      { name: 'nBeta' },
+      { name: 'nDelta' }
+    ])
+
+    expect(
+      new List([
+        { date: '2022-01-01T00:00:00Z' },
+        { date: '2024-01-01T00:00:00Z' },
+        { date: '2021-01-01T00:00:00Z' }
+      ]).orderBy(item => item.date)
+        .toArray()
+    ).toEqual([
+      { date: '2021-01-01T00:00:00Z' },
+      { date: '2022-01-01T00:00:00Z' },
+      { date: '2024-01-01T00:00:00Z' }
+    ])
   })
 
   test('orderByDescending', () => {
