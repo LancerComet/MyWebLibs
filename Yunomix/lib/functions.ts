@@ -50,9 +50,12 @@ function validateAll <T> (target: T): string[] {
       }
     } else {
       const rules = getValidatorRules(target.constructor as ConstructorOf<T>)
-      const validateResult = validate(value, rules[k])
-      if (typeof validateResult === 'string') {
-        result.push(validateResult)
+      const propRules = rules[k]
+      if (propRules) {
+        const validateResult = validate(value, rules[k])
+        if (typeof validateResult === 'string') {
+          result.push(validateResult)
+        }
       }
     }
   }
