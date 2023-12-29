@@ -76,8 +76,23 @@ class SimpleSaver {
     return stream().pipeTo(fileStream)
   }
 
+  private appendDependencyScripts () {
+    const sp = document.getElementById('sp') as HTMLScriptElement
+    const ss = document.getElementById('ss') as HTMLScriptElement
+    if (sp && ss) { return }
+    const ponyfill = document.createElement('script')
+    ponyfill.src = 'https://cdn.jsdelivr.net/npm/web-streams-polyfill@2.0.2/dist/ponyfill.min.js'
+    ponyfill.id = 'sp'
+    const streamsaver = document.createElement('script')
+    streamsaver.src = 'https://cdn.jsdelivr.net/npm/streamsaver@2.0.3/StreamSaver.min.js'
+    streamsaver.id = 'ss'
+    document.body.appendChild(ponyfill)
+    document.body.appendChild(streamsaver)
+  }
+
   constructor (opt?: IOpts) {
     this.useFileSystem = opt?.useFileSystem ?? false
+    this.appendDependencyScripts()
   }
 }
 
