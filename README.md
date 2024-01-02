@@ -7,35 +7,38 @@ This repository contains several web packages of my own.
 ## List
 
  - Canvas: A Canvas utility.  
-[![npm version](https://badge.fury.io/js/@lancercomet%2Fcanvas.svg)](https://badge.fury.io/js/@lancercomet%2Fcanvas)
+[![npm version](https://badge.fury.io/js/@lancercomet%2Fcanvas.svg)](https://www.npmjs.org/@lancercomet%2Fcanvas)
 
  - ESLintRules: My ESLint config.  
-[![npm version](https://badge.fury.io/js/@lancercomet%2Feslint-config-eslint-rules.svg)](https://badge.fury.io/js/@lancercomet%2Feslint-config-eslint-rules)
+[![npm version](https://badge.fury.io/js/@lancercomet%2Feslint-config-eslint-rules.svg)](https://www.npmjs.org/@lancercomet%2Feslint-config-eslint-rules)
 
  - Fetcher: Yet another fetcher library. A wrapper of native fetch.  
-[![npm version](https://badge.fury.io/js/@lancercomet%2Ffetcher.svg)](https://badge.fury.io/js/@lancercomet%2Ffetcher)
+[![npm version](https://badge.fury.io/js/@lancercomet%2Ffetcher.svg)](https://www.npmjs.org/@lancercomet%2Ffetcher)
 
 - FpsCounter: Read fps.  
-[![npm version](https://badge.fury.io/js/@lancercomet%2Ffps-counter.svg)](https://badge.fury.io/js/@lancercomet%2Ffps-counter)
+[![npm version](https://badge.fury.io/js/@lancercomet%2Ffps-counter.svg)](https://www.npmjs.org/@lancercomet%2Ffps-counter)
 
 - GrandPainter: A library to let you draw images on canvas with layer effects.  
-[![npm version](https://badge.fury.io/js/@lancercomet%2Fgrand-painter.svg)](https://badge.fury.io/js/@lancercomet%2Fgrand-painter)
+[![npm version](https://badge.fury.io/js/@lancercomet%2Fgrand-painter.svg)](https://www.npmjs.org/@lancercomet%2Fgrand-painter)
 
 - HtmlParser: A html parser. Parse html string into AST.  
-[![npm version](https://badge.fury.io/js/@lancercomet%2Fhtml-parser.svg)](https://badge.fury.io/js/@lancercomet%2Fhtml-parser)
+[![npm version](https://badge.fury.io/js/@lancercomet%2Fhtml-parser.svg)](https://www.npmjs.org/@lancercomet%2Fhtml-parser)
+
+- Semaphore: A simple semaphore implementation.  
+[![npm version](https://badge.fury.io/js/@lancercomet%2Flib.semaphore.svg)](https://www.npmjs.org/@lancercomet%2Flib.semaphore)
 
 - SimpleSaver: This library helps you to download one or several files easily.  
-[![npm version](https://badge.fury.io/js/@kaynewang%2Fsimple-saver.svg)](https://badge.fury.io/js/@kaynewang%2Fsimple-saver)
+[![npm version](https://badge.fury.io/js/@kaynewang%2Fsimple-saver.svg)](https://www.npmjs.org/@kaynewang%2Fsimple-saver)
 
 - Style: A CSS library. It contains many css rules just like Tailwind.  
-[![npm version](https://badge.fury.io/js/@lancercomet%2Fstyle.svg)](https://badge.fury.io/js/@lancercomet%2Fstyle)
+[![npm version](https://badge.fury.io/js/@lancercomet%2Fstyle.svg)](https://www.npmjs.org/@lancercomet%2Fstyle)
 
 - Types: A package that contains some type definitions.  
-[![npm version](https://badge.fury.io/js/@lancercomet%2Ftypes.svg)](https://badge.fury.io/js/@lancercomet%2Ftypes)
+[![npm version](https://badge.fury.io/js/@lancercomet%2Ftypes.svg)](https://www.npmjs.org/@lancercomet%2Ftypes)
 
 - Utils: A personal utility library.  
-[![npm version](https://badge.fury.io/js/@lancercomet%2Futils.svg)](https://badge.fury.io/js/@lancercomet%2Futils)
+[![npm version](https://badge.fury.io/js/@lancercomet%2Futils.svg)](https://www.npmjs.org/@lancercomet%2Futils)
 
 - Yunomix: Yunomix is a validation toolkit which is designed for TypeScript users in AOP form.  
-[![npm version](https://badge.fury.io/js/@lancercomet%2Fyunomix.svg)](https://badge.fury.io/js/@lancercomet%2Fyunomix)
+[![npm version](https://badge.fury.io/js/@lancercomet%2Fyunomix.svg)](https://www.npmjs.org/@lancercomet%2Fyunomix)
 
