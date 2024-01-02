@@ -1,6 +1,6 @@
 {
   "name": "@lancercomet/lib.semaphore",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a semaphore implementation.",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
