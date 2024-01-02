@@ -17,6 +17,10 @@
     "prepublish": "npm run test",
     "postbuild": "node ./post-build.js"
   },
+  "keywords": [
+    "Semaphore",
+    "LancerComet"
+  ],
   "author": {
     "name": "LancerComet",
     "email": "chw644@hotmail.com"
@@ -27,7 +31,11 @@
       "email": "chw644@hotmail.com"
     }
   ],
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LancerComet/MyWebLibs.git"
+  },
+  "license": "Apache-2.0",
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
