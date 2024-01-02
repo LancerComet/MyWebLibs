@@ -29,6 +29,10 @@ jobs:
         working-directory: ./HtmlParser
         run: npm ci --quiet --no-progress && npm test
 
+      - name: Test Semaphore
+        working-directory: ./Semaphore
+        run: npm ci --quiet --no-progress && npm test
+
       - name: Test Types
         working-directory: ./Types
         run: npm ci --quiet --no-progress && npm test
