@@ -1,6 +1,6 @@
-import { ResponseOK } from '../lib'
+import { ResponseOK, BadRequest, ParamIncorrect, Unauthorized, Forbidden, NotFound, InternalError } from '../lib'
 
-describe('HttpResponse test.', () => {
+describe('HttpResponse tests.', () => {
   it('should create an instance with default parameters', () => {
     const response = new ResponseOK()
     expect(response.code).toBe(0)
@@ -8,31 +8,40 @@ describe('HttpResponse test.', () => {
     expect(response.message).toBe('OK')
   })
 
-  it('should create an instance with custom data', () => {
-    const testData = { key: 'value' }
-    const response = new ResponseOK(testData)
-    expect(response.data).toEqual(testData)
+  it('should create an instance with custom parameters', () => {
+    const data = { key: 'value' }
+    const code = 200
+    const message = 'Success'
+    const response = new ResponseOK(data, code, message)
+    expect(response.code).toBe(code)
+    expect(response.data).toEqual(data)
+    expect(response.message).toBe(message)
   })
+})
 
-  it('should create an instance with a custom code', () => {
-    const testCode = 200
-    const response = new ResponseOK(null, testCode)
-    expect(response.code).toBe(testCode)
-  })
+const exceptionTests = [
+  { ExceptionClass: BadRequest, defaultStatus: 400, defaultMessage: 'BAD_REQUEST' },
+  { ExceptionClass: ParamIncorrect, defaultStatus: 400, defaultMessage: 'PARAM_INCORRECT' },
+  { ExceptionClass: Unauthorized, defaultStatus: 401, defaultMessage: 'UNAUTHORIZED' },
+  { ExceptionClass: Forbidden, defaultStatus: 403, defaultMessage: 'FORBIDDEN' },
+  { ExceptionClass: NotFound, defaultStatus: 404, defaultMessage: 'NOT_FOUND' },
+  { ExceptionClass: InternalError, defaultStatus: 500, defaultMessage: 'INTERNAL_ERROR' }
+]
 
-  it('should create an instance with a custom message', () => {
-    const testMessage = 'Success'
-    const response = new ResponseOK(null, 0, testMessage)
-    expect(response.message).toBe(testMessage)
-  })
+exceptionTests.forEach(({ ExceptionClass, defaultStatus, defaultMessage }) => {
+  describe(ExceptionClass.name, () => {
+    it('should create an instance with default parameters', () => {
+      const exceptionInstance = new ExceptionClass()
+      expect(exceptionInstance.status).toBe(defaultStatus)
+      expect(exceptionInstance.message).toBe(defaultMessage)
+    })
 
-  it('should have properties that match the provided arguments', () => {
-    const testData = { key: 'value' }
-    const testCode = 200
-    const testMessage = 'Success'
-    const response = new ResponseOK(testData, testCode, testMessage)
-    expect(response.data).toEqual(testData)
-    expect(response.code).toBe(testCode)
-    expect(response.message).toBe(testMessage)
+    it('should create an instance with custom parameters', () => {
+      const customStatus = defaultStatus + 1 // Example of a custom status
+      const customMessage = 'Custom Message'
+      const exceptionInstance = new ExceptionClass(customStatus, customMessage)
+      expect(exceptionInstance.status).toBe(customStatus)
+      expect(exceptionInstance.message).toBe(customMessage)
+    })
   })
 })
