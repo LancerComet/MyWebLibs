@@ -1,3 +1,11 @@
+function isString (target: unknown): target is string {
+  return typeof target === 'string'
+}
+
+function isNumber (target: unknown): target is number {
+  return typeof target === 'number'
+}
+
 interface IHttpResponse<T = any> {
   code: number
   data: T | null
@@ -32,37 +40,121 @@ class HttpExceptionBase implements IHttpException {
 }
 
 class BadRequest extends HttpExceptionBase {
-  constructor (status: number = 400, message: string = 'BAD_REQUEST') {
+  constructor (status?: number, message?: string)
+  constructor (message?: string)
+  constructor (...args: unknown[]) {
+    let message: string = 'BAD_REQUEST'
+    let status: number = 400
+    if (args.length === 1) {
+      const [arg] = args
+      if (isString(arg)) {
+        message = arg
+      }
+    } else if (args.length === 2) {
+      const [arg0, arg1] = args
+      if (isNumber(arg0)) { status = arg0 }
+      if (isString(arg1)) { message = arg1 }
+    }
     super(status, message)
   }
 }
 
 class ParamIncorrect extends HttpExceptionBase {
-  constructor (status: number = 400, message: string = 'PARAM_INCORRECT') {
+  constructor (status?: number, message?: string)
+  constructor (message?: string)
+  constructor (...args: unknown[]) {
+    let message: string = 'PARAM_INCORRECT'
+    let status: number = 400
+    if (args.length === 1) {
+      const [arg] = args
+      if (isString(arg)) {
+        message = arg
+      }
+    } else if (args.length === 2) {
+      const [arg0, arg1] = args
+      if (isNumber(arg0)) { status = arg0 }
+      if (isString(arg1)) { message = arg1 }
+    }
     super(status, message)
   }
 }
 
 class Unauthorized extends HttpExceptionBase {
-  constructor (status: number = 401, message: string = 'UNAUTHORIZED') {
+  constructor (status?: number, message?: string)
+  constructor (message?: string)
+  constructor (...args: unknown[]) {
+    let message: string = 'UNAUTHORIZED'
+    let status: number = 401
+    if (args.length === 1) {
+      const [arg] = args
+      if (isString(arg)) {
+        message = arg
+      }
+    } else if (args.length === 2) {
+      const [arg0, arg1] = args
+      if (isNumber(arg0)) { status = arg0 }
+      if (isString(arg1)) { message = arg1 }
+    }
     super(status, message)
   }
 }
 
 class Forbidden extends HttpExceptionBase {
-  constructor (status: number = 403, message: string = 'FORBIDDEN') {
+  constructor (status?: number, message?: string)
+  constructor (message?: string)
+  constructor (...args: unknown[]) {
+    let message: string = 'FORBIDDEN'
+    let status: number = 403
+    if (args.length === 1) {
+      const [arg] = args
+      if (isString(arg)) {
+        message = arg
+      }
+    } else if (args.length === 2) {
+      const [arg0, arg1] = args
+      if (isNumber(arg0)) { status = arg0 }
+      if (isString(arg1)) { message = arg1 }
+    }
     super(status, message)
   }
 }
 
 class NotFound extends HttpExceptionBase {
-  constructor (status: number = 404, message: string = 'NOT_FOUND') {
+  constructor (status?: number, message?: string)
+  constructor (message?: string)
+  constructor (...args: unknown[]) {
+    let message: string = 'NOT_FOUND'
+    let status: number = 404
+    if (args.length === 1) {
+      const [arg] = args
+      if (isString(arg)) {
+        message = arg
+      }
+    } else if (args.length === 2) {
+      const [arg0, arg1] = args
+      if (isNumber(arg0)) { status = arg0 }
+      if (isString(arg1)) { message = arg1 }
+    }
     super(status, message)
   }
 }
 
 class InternalError extends HttpExceptionBase {
-  constructor (status: number = 500, message: string = 'INTERNAL_ERROR') {
+  constructor (status?: number, message?: string)
+  constructor (message?: string)
+  constructor (...args: unknown[]) {
+    let message: string = 'INTERNAL_ERROR'
+    let status: number = 500
+    if (args.length === 1) {
+      const [arg] = args
+      if (isString(arg)) {
+        message = arg
+      }
+    } else if (args.length === 2) {
+      const [arg0, arg1] = args
+      if (isNumber(arg0)) { status = arg0 }
+      if (isString(arg1)) { message = arg1 }
+    }
     super(status, message)
   }
 }
