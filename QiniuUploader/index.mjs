@@ -5,6 +5,9 @@ import path from 'path'
 import qiniu from 'qiniu'
 import { program } from 'commander'
 import assert from 'assert'
+import { config } from 'dotenv'
+
+config()
 
 program
   .option('--upload-folder <char>', '需要上传的文件夹路径.')
