@@ -1,0 +1,26 @@
+{
+  "name": "@lancercomet/qiniu-uploader",
+  "version": "0.1.0",
+  "description": "This package is used for uploading your assets to the Qiniu cloud.",
+  "main": "index.mjs",
+  "scripts": {},
+  "keywords": [
+    "Qiniu", "LancerComet"
+  ],
+  "author": {
+    "name": "LancerComet",
+    "email": "chw644@hotmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LancerComet/MyWebLibs.git"
+  },
+  "license": "Apache-2.0",
+  "bin": {
+    "qiniu-uploader": "index.mjs"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "qiniu": "^7.11.0"
+  }
+}

@@ -24,6 +24,9 @@ This repository contains several web packages of my own.
 - HtmlParser: A html parser. Parse html string into AST.  
 [![npm version](https://badge.fury.io/js/@lancercomet%2Fhtml-parser.svg)](https://www.npmjs.org/@lancercomet%2Fhtml-parser)
 
+- QiniuUploader: Upload assets to the Qiniu CDN.  
+[![npm version](https://badge.fury.io/js/@lancercomet%2Fqiniu-uploader.svg)](https://www.npmjs.org/@lancercomet%2Fqiniu-uploader)
+
 - Semaphore: A simple semaphore implementation.  
 [![npm version](https://badge.fury.io/js/@lancercomet%2Flib.semaphore.svg)](https://www.npmjs.org/@lancercomet%2Flib.semaphore)
 
