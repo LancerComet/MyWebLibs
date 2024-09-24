@@ -2,12 +2,11 @@
 
 This is my own ESLint config preset.
 
-You have to use it with `typescript-eslint` and `eslint-plugin-import`.
-
 ```
-npm install eslint eslint-config-standard eslint-plugin-import eslint-plugin-n eslint-plugin-promise @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-import @lancercomet/eslint-config-eslint-rules --save-dev
+npm install @lancercomet/eslint-config-eslint-rules --save-dev
 ```
 
+> Necessary dependencies are installed automatically.
 
 ```js
 module.exports = {
