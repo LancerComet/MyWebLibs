@@ -71,7 +71,12 @@ const walkDir = async (dirPath) => {
     const uploadResult= await formUploader.putStream(uploadToken, key, stream, putExtra, () => {
       // ...
     })
-    console.log('Upload done, key:', uploadResult.data.key)
+    const uploadedKey = uploadResult.data.key
+    if (uploadedKey) {
+      console.log('Upload done, key:', uploadedKey)
+    } else {
+      console.error('No key was returned from Qiniu, upload may failed.')
+    }
   }
 }
 
