@@ -1,0 +1,54 @@
+{
+  "name": "@lancercomet/vue-hooks",
+  "version": "0.0.0",
+  "description": "Some vue hooks.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.module.js",
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "keywords": [
+    "Vue",
+    "Hooks",
+    "LancerComet"
+  ],
+  "author": {
+    "name": "LancerComet",
+    "email": "chw644@hotmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LancerComet/MyWebLibs.git"
+  },
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "rollup -c",
+    "prepublish": "npm run build",
+    "preversion": "npm run build"
+  },
+  "peerDependencies": {
+    "@lancercomet/fetcher": "^1.0.0",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@lancercomet/fetcher": "^1.1.2",
+    "@types/jest": "^27.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "eslint": "^8.14.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "jest": "^27.5.1",
+    "reflect-metadata": "^0.1.13",
+    "rollup": "^2.70.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3",
+    "vue": "^3.5.13"
+  }
+}
