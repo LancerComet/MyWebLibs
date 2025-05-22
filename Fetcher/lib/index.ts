@@ -47,7 +47,7 @@ interface IFetcher {
   baseUrl?: string
 
   /**
-   * Timeout.
+   * Timeout, ms.
    *
    * @default undefined
    */
