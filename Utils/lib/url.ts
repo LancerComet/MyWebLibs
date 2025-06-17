@@ -1,4 +1,5 @@
 import * as qs from 'qs'
+import { isString } from './types'
 
 /**
  * 从 Url 中获取全部 QueryString.
@@ -37,8 +38,27 @@ function stringify (data: any, option?: qs.IStringifyOptions): string {
   return qs.stringify(data, option)
 }
 
+/**
+ * 从 URL 中移除所有查询字符串.
+ *
+ * @param {string} url
+ * @returns {string}
+ */
+function removeAllQueriesFromUrl (url: string): string {
+  if (!isString(url)) {
+    return url
+  }
+
+  const queryIndex = url.indexOf('?')
+  if (queryIndex > -1) {
+    url = url.substring(0, queryIndex)
+  }
+  return url
+}
+
 export {
   getTargetQueryStringValue,
   getAllQueryStringValues,
-  stringify
+  stringify,
+  removeAllQueriesFromUrl
 }
