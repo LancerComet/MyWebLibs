@@ -22,7 +22,7 @@ function getTargetQueryStringValue (key: string): string | qs.ParsedQs | string[
     .map(key => queryStrings[key])
 
   return matchedValues.length
-    ? matchedValues[0]
+    ? matchedValues[0] as string | qs.ParsedQs | string[] | qs.ParsedQs[] | undefined
     : undefined
 }
 
