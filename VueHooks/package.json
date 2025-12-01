@@ -1,6 +1,6 @@
 {
   "name": "@lancercomet/vue-hooks",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Some vue hooks.",
   "main": "./dist/index.js",
   "module": "./dist/index.module.js",
