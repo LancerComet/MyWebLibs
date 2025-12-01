@@ -23,13 +23,11 @@ const getInitialLocale = (): AppLocale => {
 
     const browserLanguage = window.navigator.language.toLocaleLowerCase()
     if (browserLanguage.includes('zh') || browserLanguage.includes('hans')) {
-      // return AppLocale.Chs
-      return AppLocale.En
+      return AppLocale.Chs
     }
 
     if (browserLanguage.includes('ja') || browserLanguage.includes('jp')) {
-      // return AppLocale.Jpn
-      return AppLocale.En
+      return AppLocale.Jpn
     }
 
     return FALLBACK_LOCALE
