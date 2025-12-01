@@ -15,6 +15,7 @@ function useFetch<P, T> (fetchExec: FetcherFunction<P, T>) {
   const dataRef = ref<T>()
   const inLoadingRef = ref<boolean>(false)
   const errorRef = ref<Error>()
+  const statusRef = ref<number>()
 
   const mutate = async (param?: P) => {
     if (inLoadingRef.value) {
@@ -36,6 +37,7 @@ function useFetch<P, T> (fetchExec: FetcherFunction<P, T>) {
         result = await fetchExec(param)
       }
 
+      statusRef.value = result.status
       if (result.error) {
         errorRef.value = result.error
       } else {
@@ -56,6 +58,7 @@ function useFetch<P, T> (fetchExec: FetcherFunction<P, T>) {
     data: readonly(dataRef),
     inLoading: readonly(inLoadingRef),
     error: readonly(errorRef),
+    status: readonly(statusRef),
     mutate,
     replaceState
   }
