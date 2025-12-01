@@ -1,0 +1,6 @@
+.coverage-report/
+.rpt2_cache/
+node_modules/
+.idea/
+.vscode/
+dist/
