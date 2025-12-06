@@ -2,8 +2,9 @@
   "name": "@lancercomet/vue-i18n",
   "version": "0.2.0",
   "description": "Yet another i18n lib for Vue.",
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "type": "module",
   "files": [
     "dist/",
     "README.md"
