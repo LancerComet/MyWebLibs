@@ -1,6 +1,6 @@
 {
   "name": "@lancercomet/vue-i18n",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Yet another i18n lib for Vue.",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
