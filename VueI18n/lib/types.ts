@@ -11,7 +11,9 @@ interface I18nMessage {
 }
 
 interface IPluginOption {
+  isSSR?: boolean
   storageKeyPrefix: string
+  fallbackLocale?: AppLocale
 }
 
 export {

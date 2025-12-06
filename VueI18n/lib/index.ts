@@ -3,17 +3,20 @@ import { Plugin, readonly, ref } from 'vue'
 import { AppLocale, I18nMessage, IPluginOption } from './types'
 import { getNestedValue } from './utils'
 
-const FALLBACK_LOCALE = AppLocale.En
-
+let fallbackLocale = AppLocale.En
 let storageKeyPrefix = ''
 let isInitialized = false
-const localeRef = ref<AppLocale>(FALLBACK_LOCALE)
+const localeRef = ref<AppLocale>(fallbackLocale)
 
 const buildStorageKey = (): string => {
   return `${storageKeyPrefix}: Locale`
 }
 
-const getInitialLocale = (): AppLocale => {
+const getInitialLocale = (isSSR: boolean): AppLocale => {
+  if (isSSR) {
+    return fallbackLocale
+  }
+
   try {
     const storageKey = buildStorageKey()
     const storageValue = localStorage.getItem(storageKey) as AppLocale
@@ -30,10 +33,10 @@ const getInitialLocale = (): AppLocale => {
       return AppLocale.Jpn
     }
 
-    return FALLBACK_LOCALE
+    return fallbackLocale
   } catch (error) {
     console.error('[i18n] Failed to retrieve locale from localStorage:', error)
-    return FALLBACK_LOCALE
+    return fallbackLocale
   }
 }
 
@@ -51,12 +54,11 @@ const createI18nPlugin = (options: IPluginOption): Plugin => {
   return {
     install () {
       if (isInitialized) {
-        console.warn('[i18n] Plugin is already initialized.')
         return
       }
-
+      fallbackLocale = options.fallbackLocale || AppLocale.En
       storageKeyPrefix = options.storageKeyPrefix || 'lc_i18n_'
-      localeRef.value = getInitialLocale()
+      localeRef.value = getInitialLocale(options.isSSR ?? false)
       isInitialized = true
     }
   }
