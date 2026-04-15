@@ -17,9 +17,9 @@ program
   .option('--qiniu-bucket <char>', '七牛的 Bucket 名称.')
   .option('--qiniu-access-key <char>', '七牛 Access Key.')
   .option('--qiniu-secret-key <char>', '七牛 Secret Key.')
-  .option('--prefetch', '上传完成后执行 DCDN 预取.')
+  .option('--prefetch', '上传完成后执行预取.')
   .option('--prefetch-domain <char>', '预取使用的 CDN 域名, 如 https://cdn.example.com.')
-  .option('--prefetch-product <char>', '预取产品类型, 默认 dcdn.', 'dcdn')
+  .option('--prefetch-product <char>', '预取产品类型, 如 dcdn. 不指定则为融合 CDN.')
 
 program.parse()
 
@@ -125,16 +125,20 @@ const generateQBoxToken = (apiPath, accessKey, secretKey) => {
 }
 
 /**
- * Send a prefetch request to Qiniu DCDN.
+ * Send a prefetch request to Qiniu Fusion CDN.
  *
- * @param {string[]} urls - URLs to prefetch, max 60.
- * @param {{accessKey: string, secretKey: string, product: string}} param
- * @returns {Promise<{code: number, error: string, requestId: string, invalidUrls: string[]|null, quotaDay: number, surplusDay: number}>}
+ * @param {string[]} urls - URLs to prefetch, max 20.
+ * @param {{accessKey: string, secretKey: string, product?: string}} param
+ * @returns {Promise<{code: number, error: string, requestId: string, taskIds: Object<string, string>|null, invalidUrls: string[]|null, quotaDay: number, surplusDay: number}>}
  */
 const sendPrefetchRequest = (urls, { accessKey, secretKey, product }) => {
   const apiPath = '/v2/tune/prefetch'
   const token = generateQBoxToken(apiPath, accessKey, secretKey)
-  const body = JSON.stringify({ urls, product })
+  const payload = { urls }
+  if (product) {
+    payload.product = product
+  }
+  const body = JSON.stringify(payload)
 
   return new Promise((resolve, reject) => {
     const req = https.request({
@@ -169,14 +173,14 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 /**
  * Prefetch all URLs in batches.
- * Each batch contains at most 60 URLs, with 1 second interval between batches.
+ * Each batch contains at most 20 URLs, with 1 second interval between batches.
  * Retries up to 3 times on QPS limit (403024) or server error (500000).
  *
  * @param {string[]} allUrls
- * @param {{accessKey: string, secretKey: string, product: string}} param
+ * @param {{accessKey: string, secretKey: string, product?: string}} param
  */
 const prefetchAllUrls = async (allUrls, { accessKey, secretKey, product }) => {
-  const batchSize = 60
+  const batchSize = 20
   const maxRetries = 3
   const batches = []
 
@@ -201,8 +205,9 @@ const prefetchAllUrls = async (allUrls, { accessKey, secretKey, product }) => {
       const result = await sendPrefetchRequest(batch, { accessKey, secretKey, product })
 
       if (result.code === 200) {
+        const taskCount = result.taskIds ? Object.keys(result.taskIds).length : 0
         console.log(
-          `  Batch ${i + 1}/${batches.length}: ${batch.length} URL(s) prefetched.` +
+          `  Batch ${i + 1}/${batches.length}: ${batch.length} URL(s) prefetched (${taskCount} task(s)).` +
           ` RequestId: ${result.requestId}.` +
           ` Quota: ${result.surplusDay}/${result.quotaDay}.`
         )
@@ -222,7 +227,7 @@ const prefetchAllUrls = async (allUrls, { accessKey, secretKey, product }) => {
       }
     }
 
-    // Rate limit: wait 1 second between batches to stay within 60 URL/s.
+    // Rate limit: wait 1 second between batches to stay within QPS limit.
     if (i < batches.length - 1) {
       await sleep(1000)
     }

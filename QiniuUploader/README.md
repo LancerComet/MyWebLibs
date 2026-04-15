@@ -22,20 +22,20 @@ npx qiniu-uploader --upload-folder dist \
 
 ## Prefetch
 
-When `--prefetch` is enabled, all successfully uploaded file URLs will be submitted to Qiniu DCDN for prefetching (cache warming) after the upload is completed.
+When `--prefetch` is enabled, all successfully uploaded file URLs will be submitted to Qiniu Fusion CDN for prefetching (cache warming) after the upload is completed.
 
 ### Options
 
 | Option | Description | Required |
 |---|---|---|
-| `--prefetch` | Enable DCDN prefetch after upload. | No |
+| `--prefetch` | Enable CDN prefetch after upload. | No |
 | `--prefetch-domain <url>` | The CDN domain for constructing prefetch URLs, e.g. `https://cdn.example.com`. | Yes (when `--prefetch` is enabled) |
-| `--prefetch-product <str>` | The prefetch product type, defaults to `dcdn`. | No |
+| `--prefetch-product <str>` | The prefetch product type (e.g. `dcdn`). Not required for Fusion CDN. | No |
 
 `prefetch-domain` can also be set via the environment variable `QINIU_PREFETCH_DOMAIN`.
 
 ### How it works
 
-- URLs are submitted in batches of 60 (Qiniu API limit).
+- URLs are submitted in batches of 20 (Qiniu Fusion CDN API limit).
 - A 1-second interval is applied between batches to respect the rate limit.
 - On QPS throttling (403024) or server errors (500000), the batch will be retried up to 3 times with exponential backoff.
