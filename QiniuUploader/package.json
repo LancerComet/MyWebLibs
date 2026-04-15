@@ -1,6 +1,6 @@
 {
   "name": "@lancercomet/qiniu-uploader",
-  "version": "0.1.2",
+  "version": "0.2.0-test",
   "description": "This package is used for uploading your assets to the Qiniu cloud.",
   "main": "index.mjs",
   "scripts": {},
